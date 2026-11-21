@@ -1,0 +1,2508 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Naell Shop</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='48' height='48' rx='12' fill='url(%23g)'/%3E%3Cpath d='M18.4 16.4v-2.1a5.6 5.6 0 0 1 11.2 0v2.1' fill='none' stroke='%23ffffff' stroke-width='2.7' stroke-linecap='round'/%3E%3Cpath d='M13.1 16.4h21.8l-1.6 18.1a3.05 3.05 0 0 1-3 2.7H17.7a3.05 3.05 0 0 1-3-2.7L13.1 16.4Z' fill='%23ffffff'/%3E%3Cpath d='M19.9 24.4v8.1M19.9 24.4l8.2 8.1M28.1 24.4v8.1' fill='none' stroke='%232563eb' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#ffffff; --surface:#ffffff; --soft:#f6f7fb; --soft2:#eef1f7;
+  --line:#e6e8f0; --line2:#dfe3ee;
+  --text:#131722; --muted:#6b7280; --muted2:#9aa3b2;
+  --accent:#2563eb; --accent-soft:#eff4ff; --accent-dark:#1d4ed8;
+  --danger:#e11d48; --danger-soft:#fff1f4;
+  --ok:#059669; --ok-soft:#ecfdf5;
+  --warn:#b45309; --warn-soft:#fff8eb;
+  --radius:16px; --radius-sm:11px;
+  --shadow:0 1px 2px rgba(16,24,40,.05),0 8px 24px rgba(16,24,40,.06);
+  --shadow-lg:0 24px 60px rgba(16,24,40,.16);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:15px;line-height:1.5;
+}
+button,input,textarea,select{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:var(--accent);text-decoration:none}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:#d5d9e4;border-radius:9px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ---------- layar ---------- */
+.screen{display:none;min-height:100vh}
+.screen.active{display:block}
+.center{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+
+/* ---------- kartu & form ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.auth-card{width:100%;max-width:430px;padding:26px 24px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;letter-spacing:-.5px;overflow:hidden}
+.logo svg{width:100%;height:100%;display:block}
+.brand h1{font-size:20px;margin:0;letter-spacing:-.4px}
+.brand small{color:var(--muted);font-size:12px}
+h2.title{font-size:22px;margin:18px 0 4px;letter-spacing:-.4px}
+p.sub{color:var(--muted);font-size:13.5px;margin:0 0 18px}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:12.5px;font-weight:600;color:#39445c;margin-bottom:6px}
+.field .hint{font-size:11.5px;color:var(--muted2);margin-top:5px}
+.input{
+  width:100%;padding:12px 13px;border:1px solid var(--line2);background:#fff;border-radius:var(--radius-sm);
+  outline:none;transition:.15s;font-size:14.5px}
+.input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.input:disabled{background:var(--soft);color:var(--muted)}
+textarea.input{min-height:88px;resize:vertical}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 16px;border-radius:var(--radius-sm);font-weight:650;font-size:14.5px;
+  background:var(--accent);color:#fff;transition:.15s;border:1px solid var(--accent)}
+.btn:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
+.btn:active{transform:translateY(1px)}
+.btn.block{width:100%}
+.btn.ghost{background:#fff;color:var(--text);border:1px solid var(--line2)}
+.btn.ghost:hover{background:var(--soft)}
+.btn.danger{background:#fff;color:var(--danger);border:1px solid #f7cbd6}
+.btn.danger:hover{background:var(--danger-soft)}
+.btn.ok{background:var(--ok);border-color:var(--ok)}
+.btn.ok:hover{background:#047857;border-color:#047857}
+.btn.sm{padding:8px 12px;font-size:13px;border-radius:10px}
+.btn.xs{padding:6px 10px;font-size:12px;border-radius:9px}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.row{display:flex;gap:10px}
+.row.wrap{flex-wrap:wrap}
+.grow{flex:1}
+.link-btn{color:var(--accent);font-weight:600;font-size:13.5px}
+.divider{height:1px;background:var(--line);margin:16px 0}
+.pill{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:700;background:var(--soft2);color:#495066}
+.pill.blue{background:var(--accent-soft);color:var(--accent-dark)}
+.pill.green{background:var(--ok-soft);color:var(--ok)}
+.pill.red{background:var(--danger-soft);color:var(--danger)}
+.pill.amber{background:var(--warn-soft);color:var(--warn)}
+.dot-on{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:5px;vertical-align:middle;
+  box-shadow:0 0 0 0 rgba(5,150,105,.6);animation:pulseOn 1.6s infinite}
+@keyframes pulseOn{0%{box-shadow:0 0 0 0 rgba(5,150,105,.55)}70%{box-shadow:0 0 0 6px rgba(5,150,105,0)}100%{box-shadow:0 0 0 0 rgba(5,150,105,0)}}
+.err{background:var(--danger-soft);color:#9f1239;border:1px solid #fbcfda;padding:10px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;display:none}
+.err.show{display:block}
+.info{background:var(--accent-soft);color:#1e3a8a;border:1px solid #d7e3ff;padding:11px 12px;border-radius:10px;font-size:13px}
+.muted{color:var(--muted)}
+.tiny{font-size:12px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.hidden{display:none!important}
+
+/* ---------- tanda terima / loading ---------- */
+#screen-loading .center{flex-direction:column;gap:16px}
+.spinner{width:44px;height:44px;border-radius:50%;border:3.5px solid #e5e9f5;border-top-color:var(--accent);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-txt{font-weight:650;letter-spacing:-.2px}
+.progress{width:230px;height:6px;border-radius:6px;background:var(--soft2);overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s linear}
+
+/* ---------- shell aplikasi ---------- */
+#screen-app{background:#fbfcfe}
+.appbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.appbar-in{max-width:960px;margin:0 auto;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.appbar .who{margin-left:auto;display:flex;align-items:center;gap:9px}
+.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;overflow:hidden;flex:none}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.avatar.lg{width:78px;height:78px;font-size:26px}
+.avatar.sm{width:28px;height:28px;font-size:12px}
+.wrap-main{max-width:960px;margin:0 auto;padding:16px 14px 96px}
+.navbar{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.navbar-in{max-width:960px;margin:0 auto;display:flex}
+.navbtn{flex:1;min-width:0;padding:9px 1px 10px;text-align:center;color:var(--muted);font-size:10.5px;font-weight:600;position:relative;border-top:2px solid transparent}
+.navbtn span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.navbtn.active{color:var(--accent);border-top-color:var(--accent)}
+.navbtn .ic{margin:0 auto 3px;width:22px;height:22px;display:block}
+.navbtn .dot{position:absolute;top:5px;right:calc(50% - 19px);min-width:16px;height:16px;border-radius:9px;background:var(--danger);
+  color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.section-head{display:flex;align-items:flex-end;gap:10px;margin:22px 0 10px}
+.section-head h3{margin:0;font-size:17px;letter-spacing:-.3px}
+.section-head .sp{margin-left:auto}
+
+/* ---------- produk ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px}
+.prod{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.15s}
+.prod:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.thumb{aspect-ratio:1/1;background:linear-gradient(140deg,#eef2ff,#f6f7fb);display:flex;align-items:center;justify-content:center;
+  font-size:34px;font-weight:800;color:#c3cbdd;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.prod-body{padding:10px 11px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.prod-name{font-weight:650;font-size:13.5px;line-height:1.35}
+.prod-price{font-weight:800;font-size:14.5px;color:var(--accent-dark)}
+.prod-desc{font-size:11.5px;color:var(--muted);max-height:32px;overflow:hidden}
+.prod-foot{margin-top:auto;display:flex;gap:6px;align-items:center}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px}
+.item-row{display:flex;gap:11px;align-items:center}
+.thumb-sm{width:52px;height:52px;border-radius:11px;background:var(--soft);overflow:hidden;flex:none;display:flex;align-items:center;justify-content:center;font-weight:800;color:#c3cbdd}
+.thumb-sm img{width:100%;height:100%;object-fit:cover}
+.empty{text-align:center;color:var(--muted);padding:40px 16px;border:1px dashed var(--line2);border-radius:var(--radius);background:#fff}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* ---------- notifikasi & modal ---------- */
+#notif-root{position:fixed;top:12px;right:12px;z-index:80;display:flex;flex-direction:column;gap:10px;max-width:340px;width:calc(100% - 24px)}
+.notif{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:13px;box-shadow:var(--shadow-lg);
+  padding:12px 13px;transform:translateX(115%);opacity:0;transition:.35s cubic-bezier(.2,.8,.3,1)}
+.notif.show{transform:none;opacity:1}
+.notif.act{border-left-color:var(--danger)}
+.notif h4{margin:0 0 3px;font-size:13.5px}
+.notif p{margin:0;font-size:12.5px;color:var(--muted)}
+.notif .code{margin-top:8px;font-size:24px;font-weight:800;letter-spacing:5px;color:var(--accent-dark);font-family:ui-monospace,monospace}
+.notif .acts{display:flex;gap:8px;margin-top:9px}
+#toast-root{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{background:#131722;color:#fff;padding:10px 15px;border-radius:999px;font-size:13px;font-weight:600;box-shadow:var(--shadow-lg);
+  opacity:0;transform:translateY(10px);transition:.25s;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:none}
+.toast.ok{background:#065f46}.toast.err{background:#9f1239}
+#modal-root{position:fixed;inset:0;z-index:70;display:none}
+#modal-root.open{display:block}
+.backdrop{position:absolute;inset:0;background:rgba(16,24,40,.45);backdrop-filter:blur(2px)}
+.sheet{position:relative;max-width:430px;margin:0 auto;top:50%;transform:translateY(-50%);width:calc(100% - 28px);
+  background:#fff;border-radius:18px;box-shadow:var(--shadow-lg);max-height:88vh;overflow:auto;animation:pop .2s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(calc(-50% + 12px)) scale(.98)}}
+.sheet-head{padding:18px 18px 0}
+.sheet-head h3{margin:0 0 4px;font-size:17px;letter-spacing:-.3px}
+.sheet-head p{margin:0;color:var(--muted);font-size:13px}
+.sheet-body{padding:16px 18px}
+.sheet-foot{padding:0 18px 18px;display:flex;gap:9px;flex-wrap:wrap}
+.sheet-foot .btn{flex:1}
+.code-input{width:100%;text-align:center;letter-spacing:9px;font-size:24px;font-weight:800;padding:14px;border:1px solid var(--line2);border-radius:13px;outline:none;font-family:ui-monospace,monospace}
+.code-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+
+/* ---------- pola (pattern) ---------- */
+.pattern{position:relative;width:250px;height:250px;margin:6px auto 12px;user-select:none;touch-action:manipulation}
+.pattern svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.pgrid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr)}
+.pdot{display:flex;align-items:center;justify-content:center}
+.pdot i{width:22px;height:22px;border-radius:50%;background:#e6eaf4;border:2px solid #d6dcea;transition:.13s;display:block}
+.pdot.on i{background:var(--accent);border-color:var(--accent);transform:scale(1.28)}
+.verify-visual{text-align:center;padding:8px 0 4px}
+.scan{width:104px;height:104px;margin:6px auto 12px;border-radius:50%;border:2px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;background:var(--accent-soft);position:relative}
+.scan.scanning{animation:pulse 1s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 14px rgba(37,99,235,.12)}}
+.scan.ok{border-color:var(--ok);background:var(--ok-soft)}
+
+/* ---------- chat ---------- */
+.chat{height:290px;overflow:auto;background:var(--soft);border:1px solid var(--line);border-radius:13px;padding:12px;display:flex;flex-direction:column;gap:9px}
+.bub{max-width:78%;padding:9px 12px;border-radius:14px;font-size:13.5px;background:#fff;border:1px solid var(--line);align-self:flex-start}
+.bub.me{background:var(--accent);color:#fff;border-color:var(--accent);align-self:flex-end}
+.bub img{max-width:190px;border-radius:10px;display:block;margin-bottom:5px}
+.bub .t{display:block;font-size:10px;opacity:.65;margin-top:4px}
+.chat-send{display:flex;gap:8px;margin-top:9px}
+.chat-send .input{padding:10px 12px}
+
+/* ---------- toggle ---------- */
+.switch{width:46px;height:27px;border-radius:999px;background:#d7dced;position:relative;transition:.2s;flex:none}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.switch.on{background:var(--ok)}
+.switch.on::after{left:22px}
+.setting-row{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.setting-row:last-child{border-bottom:0}
+.setting-row .txt{flex:1}
+.setting-row strong{display:block;font-size:14px;font-weight:650}
+.setting-row span{font-size:12px;color:var(--muted)}
+.banner{background:var(--accent-soft);border:1px solid #d7e3ff;border-radius:13px;padding:11px 12px;display:flex;gap:10px;align-items:center;margin-bottom:14px}
+.banner strong{font-size:13.5px}
+.banner .grow{min-width:0}
+.authen-code{font-size:30px;font-weight:800;letter-spacing:6px;font-family:ui-monospace,monospace;color:var(--accent-dark)}
+.mail-item{display:flex;gap:11px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:13px;background:#fff}
+.mail-item.unread{border-color:#c7d7ff;background:#fbfcff}
+.mail-item h4{margin:0 0 3px;font-size:13.5px}
+.mail-item p{margin:0;font-size:12.5px;color:var(--muted)}
+@media(max-width:520px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  #notif-root{left:12px;right:12px;max-width:none}
+}
+</style>
+</head>
+<body>
+<!-- ================= LOGO NAELL SHOP (SVG) ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="naell-mark" viewBox="0 0 48 48">
+    <path d="M18.4 16.4v-2.1a5.6 5.6 0 0 1 11.2 0v2.1" fill="none" stroke="#ffffff" stroke-width="2.7" stroke-linecap="round"/>
+    <path d="M13.1 16.4h21.8l-1.6 18.1a3.05 3.05 0 0 1-3 2.7H17.7a3.05 3.05 0 0 1-3-2.7L13.1 16.4Z" fill="#ffffff"/>
+    <path d="M19.9 24.4v8.1M19.9 24.4l8.2 8.1M28.1 24.4v8.1" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<!-- ================= LOGIN ================= -->
+<div id="screen-login" class="screen active">
+  <div class="center">
+    <div class="card auth-card">
+      <div class="brand">
+        <div class="logo"><svg viewBox="0 0 48 48" role="img" aria-label="Logo Naell Shop"><use href="#naell-mark"/></svg></div>
+        <div><h1>Naell Shop</h1><small>Toko online &amp; Pasar Jual Beli</small></div>
+      </div>
+      <h2 class="title">Log-In</h2>
+      <p class="sub">Masuk untuk mulai berbelanja di Naell Shop.</p>
+      <div class="row" style="align-items:center;margin-bottom:14px">
+        <span class="pill green" id="lg-online"><span class="dot-on"></span> 0 online</span>
+        <span class="tiny muted">pengguna sedang online</span>
+      </div>
+      <div id="login-err" class="err"></div>
+      <div class="field"><label>Username</label><input id="lg-user" class="input" placeholder="Masukkan username" autocomplete="username"></div>
+      <div class="field"><label>Password</label><input id="lg-pass" class="input" type="password" placeholder="Masukkan password" autocomplete="current-password"></div>
+      <div class="field"><label>Gmail ( Opsional )</label>
+        <input id="lg-mail" class="input" placeholder="contoh: nama@gmail.com.nael">
+        <div class="hint">Kosongkan jika akun tidak memakai Gmail.</div>
+      </div>
+      <button class="btn block" id="btn-login">Masuk</button>
+      <div class="divider"></div>
+      <div class="row" style="align-items:center">
+        <span class="muted tiny grow">Belum Punya Akun? Daftar Sekarang</span>
+        <button class="btn ghost sm" id="go-register">Buat</button>
+      </div>
+      <div class="row" style="align-items:center;margin-top:12px">
+        <span class="muted tiny grow">Lupa Password Atau Username?</span>
+        <button class="link-btn" id="go-recover">Klik ini</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DAFTAR ================= -->
+<div id="screen-register" class="screen">
+  <div class="center">
+    <div class="card auth-card">
+      <div class="brand">
+        <div class="logo"><svg viewBox="0 0 48 48" role="img" aria-label="Logo Naell Shop"><use href="#naell-mark"/></svg></div>
+        <div><h1>Naell Shop</h1><small>Daftar akun baru</small></div>
+      </div>
+      <h2 class="title">Buat Akun</h2>
+      <p class="sub">Isi data di bawah untuk membuat akun Naell Shop.</p>
+      <div id="rg-err" class="err"></div>
+      <div class="field"><label>Nama Lengkap</label><input id="rg-nama" class="input" placeholder="Nama kamu"></div>
+      <div class="field"><label>Username</label><input id="rg-user" class="input" placeholder="Username untuk login"></div>
+      <div class="field"><label>Password</label><input id="rg-pass" class="input" type="password" placeholder="Password kamu"></div>
+      <div class="field"><label>Gmail ( Opsional )</label>
+        <input id="rg-mail" class="input" placeholder="contoh: nama@gmail.com.nael">
+        <div class="hint">Gmail dipakai untuk pemulihan akun &amp; kode verifikasi.</div>
+      </div>
+      <button class="btn block" id="btn-register">Buat Akun</button>
+      <div class="divider"></div>
+      <div class="row" style="align-items:center">
+        <span class="muted tiny grow">Sudah punya akun?</span>
+        <button class="link-btn" id="go-login">Kembali Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PULIHKAN AKUN ================= -->
+<div id="screen-recover" class="screen">
+  <div class="center">
+    <div class="card auth-card">
+      <div class="brand">
+        <div class="logo"><svg viewBox="0 0 48 48" role="img" aria-label="Logo Naell Shop"><use href="#naell-mark"/></svg></div>
+        <div><h1>Naell Shop</h1><small>Pemulihan akun</small></div>
+      </div>
+      <h2 class="title">Pulihkan akun</h2>
+      <p class="sub">Masukkan Gmail yang kamu pakai saat membuat akun di Naell Shop.</p>
+      <div id="rc-err" class="err"></div>
+
+      <div id="rc-step1">
+        <div class="field"><label>Gmail</label><input id="rc-mail" class="input" placeholder="contoh: nama@gmail.com.nael"></div>
+        <button class="btn block" id="rc-next">Lanjut</button>
+      </div>
+
+      <div id="rc-step2" class="hidden">
+        <div class="info" id="rc-device">Notifikasi dikirim ke perangkatmu.</div>
+        <div class="field" style="margin-top:13px"><label>Kode dari notifikasi</label>
+          <input id="rc-code" class="code-input" maxlength="6" inputmode="numeric" placeholder="------"></div>
+        <div class="row">
+          <button class="btn ghost grow" id="rc-resend">Kirim Ulang Kode</button>
+          <button class="btn grow" id="rc-verify">Verifikasi</button>
+        </div>
+      </div>
+
+      <div id="rc-step3" class="hidden">
+        <div class="info" style="margin-bottom:13px">Akun kamu berhasil dipulihkan.</div>
+        <div class="field"><label>Username</label><input id="rc-user" class="input" disabled></div>
+        <div class="field"><label>Password saat ini</label><input id="rc-pass" class="input" disabled></div>
+        <div class="field"><label>Password Baru</label>
+          <input id="rc-new" class="input" type="password" placeholder="Masukkan password baru">
+          <div class="hint">Username tidak dapat diubah.</div></div>
+        <button class="btn block" id="rc-save">Ganti Password</button>
+        <div class="divider"></div>
+        <button class="btn ghost block" id="rc-back">Kembali ke Log-In</button>
+      </div>
+
+      <div class="divider"></div>
+      <button class="btn ghost block" id="rc-cancel">Batal</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SELAMAT DATANG ================= -->
+<div id="screen-welcome" class="screen">
+  <div class="center">
+    <div class="card auth-card" style="text-align:center">
+      <div class="avatar lg" id="wc-av" style="margin:6px auto 14px"></div>
+      <h2 class="title" style="margin-top:0">Selamat Datang</h2>
+      <p class="sub" id="wc-name" style="font-size:16px;font-weight:700;color:var(--text)">-</p>
+      <div class="info" style="text-align:left">
+        Kamu berhasil masuk ke <b>Naell Shop</b>. Tekan <b>Mulai</b> untuk membuka toko.
+      </div>
+      <button class="btn block" id="wc-start" style="margin-top:16px">Mulai</button>
+      <button class="btn ghost block" id="wc-out" style="margin-top:9px">Bukan kamu? Keluar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= LOADING ================= -->
+<div id="screen-loading" class="screen">
+  <div class="center">
+    <div class="spinner"></div>
+    <div class="load-txt">Loading Harap Tunggu</div>
+    <div class="progress"><i id="ld-bar"></i></div>
+    <div class="muted tiny" id="ld-pct">0%</div>
+  </div>
+</div>
+
+<!-- ================= APLIKASI ================= -->
+<div id="screen-app" class="screen">
+  <div class="appbar">
+    <div class="appbar-in">
+      <div class="logo" style="width:34px;height:34px;border-radius:10px"><svg viewBox="0 0 48 48" role="img" aria-label="Logo Naell Shop"><use href="#naell-mark"/></svg></div>
+      <div><strong style="letter-spacing:-.3px">Naell Shop</strong><br><span class="tiny muted" id="hd-sub">Toko</span></div>
+      <div class="who">
+        <span class="pill green" id="hd-online" title="Jumlah pengguna online"><span class="dot-on"></span> 0 online</span>
+        <span class="pill blue hidden" id="hd-admin">Admin</span>
+        <div class="avatar" id="hd-av"></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap-main" id="app-main"></div>
+  <div class="navbar"><div class="navbar-in" id="app-nav"></div></div>
+</div>
+
+<div id="notif-root"></div>
+<div id="toast-root"></div>
+<div id="modal-root"></div>
+<input type="file" id="file-input" accept="image/*" hidden>
+
+<script>
+/* =========================================================
+   NAELL SHOP — aplikasi toko online (single file)
+   Semua data disimpan di localStorage browser.
+   ========================================================= */
+
+/* ---------------- UTIL ---------------- */
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rupiah = n => 'Rp' + Number(n || 0).toLocaleString('id-ID');
+const waktu = t => new Date(t).toLocaleString('id-ID', {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+const randInt = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const angka6 = () => String(randInt(0, 999999)).padStart(6, '0');
+const hurufAcak = n => Array.from({length:n}, () => 'abcdefghjkmnpqrstuvwxyz'.charAt(randInt(0, 22))).join('');
+
+/* kata sandi disimpan ter-encode (bukan plaintext) agar bisa ditampilkan saat pemulihan */
+const enc = s => btoa(unescape(encodeURIComponent(s)));
+const dec = s => { try { return decodeURIComponent(escape(atob(s))); } catch (e) { return s; } };
+
+/* ---------------- PENYIMPANAN ---------------- */
+const DB_KEY = 'naellshop_db_v1';
+const DEV_KEY = 'naellshop_device';
+let DB = null;
+let ME = null;      // user yang sedang login
+let TAB = 'toko';
+
+/* identitas klien ini + status sinkronisasi realtime */
+const CLIENT_ID = 'c' + String(randInt(100000, 999999)) + hurufAcak(6);
+const SINKRON = { jalan:false, adaData:false, pasif:false, antre:false, perluKirim:false, sumber:null, detak:null };
+
+function deviceId() {
+  let d = localStorage.getItem(DEV_KEY);
+  if (!d) { d = 'dev-' + uid(); localStorage.setItem(DEV_KEY, d); }
+  return d;
+}
+function buatAuthKey() { return 'naelshopauth' + String(randInt(10000000, 99999999)) + hurufAcak(4); }
+function normalMail(v) {
+  v = String(v || '').trim().toLowerCase();
+  if (!v) return '';
+  if (v.includes('@')) return v;
+  return v + '@gmail.com.nael';
+}
+function akunNaell() {
+  return {username:'Naell', nama:'Naell', pass:enc('naelhandsome061214gg'), gmail:'naell@gmail.com.nael',
+    isAdmin:true, role:'Dev/Naell', avatar:'', multiLogin:true, joinedMarket:true, joinedAt:Date.now(),
+    security:{passcode:'', passkey:null, twofa:{on:false, method:'', secret:''}}};
+}
+function dataAwal() {
+  const t = Date.now() - 86400000 * 3;
+
+  const users = [
+    {username:'NaellDev', nama:'NaellDev', pass:enc('naelhandsome'), gmail:'naeldevshop@gmail.com.nael',
+     isAdmin:true, avatar:'', multiLogin:true, joinedMarket:true, joinedAt:t,
+     security:{passcode:'', passkey:null, twofa:{on:false, method:'', secret:''}}},
+    akunNaell(),
+    {username:'rudi', nama:'Rudi Santoso', pass:enc('rudi123'), gmail:'rudi@gmail.com.nael',
+     isAdmin:false, avatar:'', multiLogin:true, joinedMarket:true, joinedAt:t + 900000,
+     security:{passcode:'', passkey:null, twofa:{on:false, method:'', secret:''}}},
+    {username:'sinta', nama:'Sinta Dewi', pass:enc('sinta123'), gmail:'sinta@gmail.com.nael',
+     isAdmin:false, avatar:'', multiLogin:true, joinedMarket:true, joinedAt:t + 1800000,
+     security:{passcode:'', passkey:null, twofa:{on:false, method:'', secret:''}}}
+  ];
+
+  return {
+    users, produk: [], pasar: [], orders: [], reports: [], mails: {}, aktivitas: [],
+    online: {}, testimoni: [], mc: [], session: null, authKey: buatAuthKey(), lastDevice: {}
+  };
+}
+
+function normalisasiDB() {
+  DB.reports = DB.reports || [];
+  DB.online = DB.online || {};
+  DB.testimoni = DB.testimoni || [];
+  DB.mc = DB.mc || [];
+  /* pastikan akun khusus Dev/Naell selalu ada (untuk data lama sekalipun) */
+  if (!DB.users.some(u => u.username === 'Naell')) { DB.users.splice(1, 0, akunNaell()); simpanLokal(); }
+}
+function simpanLokal() {
+  try { localStorage.setItem(DB_KEY, JSON.stringify(DB)); return true; }
+  catch (e) {
+    toast('Penyimpanan penuh — coba pakai foto yang lebih kecil.', 'err');
+    return false;
+  }
+}
+function muat() {
+  try { DB = JSON.parse(localStorage.getItem(DB_KEY)); } catch (e) { DB = null; }
+  if (!DB || !DB.users) { DB = dataAwal(); simpanLokal(); }
+  normalisasiDB();
+}
+function simpan() {
+  const ok = simpanLokal();
+  if (SINKRON.jalan && !SINKRON.pasif) kirimServer();
+  return ok;
+}
+
+/* ---------------- SINKRONISASI REALTIME (server) ----------------
+   Data dibagi ke semua perangkat lewat server: GET/POST /api/db dan
+   aliran langsung Server-Sent Events /api/events. Bila server tidak
+   tersedia, aplikasi tetap jalan memakai penyimpanan lokal. */
+function bisaServer() {
+  try {
+    return typeof fetch === 'function' && typeof EventSource === 'function' && /^https?:$/.test(location.protocol);
+  } catch (e) { return false; }
+}
+async function ambilServer() {
+  if (!bisaServer()) return;
+  try {
+    const r = await fetch('/api/db', { cache: 'no-store' });
+    if (!r || !r.ok) return;
+    SINKRON.jalan = true;
+    const d = await r.json();
+    if (d && d.users) {
+      DB = d; normalisasiDB(); simpanLokal();
+      SINKRON.adaData = true;
+    }
+  } catch (e) { /* offline — pakai data lokal */ }
+}
+function kirimServer() {
+  if (!SINKRON.jalan || typeof fetch !== 'function') return;
+  if (SINKRON.antre) { SINKRON.perluKirim = true; return; }
+  SINKRON.antre = true;
+  setTimeout(() => {
+    SINKRON.antre = false;
+    let body;
+    try { body = JSON.stringify(DB); } catch (e) { return; }
+    fetch('/api/db', { method:'POST', headers:{ 'Content-Type':'application/json', 'X-Client-Id':CLIENT_ID }, body })
+      .catch(() => {})
+      .finally(() => { if (SINKRON.perluKirim) { SINKRON.perluKirim = false; kirimServer(); } });
+  }, 80);
+}
+function terapkanServer(d) {
+  try { if (JSON.stringify(d) === JSON.stringify(DB)) return; } catch (e) { /* lanjut terapkan */ }
+  DB = d; normalisasiDB(); simpanLokal();
+  SINKRON.pasif = true;   /* jangan pantulkan lagi perubahan yang datang dari server */
+  try {
+    if (ME) {
+      const u = cariUser(ME.username);
+      if (!u) { ME = null; perbaruiOnline(); layar('screen-login'); return; }
+      ME = u; renderApp();
+    } else {
+      perbaruiOnline();
+    }
+  } finally { SINKRON.pasif = false; }
+}
+function pasangRealtime() {
+  if (!SINKRON.jalan || SINKRON.sumber) return;
+  try {
+    const es = new EventSource('/api/events');
+    SINKRON.sumber = es;
+    es.onmessage = ev => {
+      let msg; try { msg = JSON.parse(ev.data); } catch (e) { return; }
+      const d = msg && msg.db ? msg.db : msg;
+      if (!d || !d.users) return;
+      SINKRON.jalan = true;
+      if (msg && msg.from && msg.from === CLIENT_ID) return;   /* pantulan pesan sendiri */
+      terapkanServer(d);
+    };
+    es.onerror = () => { /* EventSource akan menyambung ulang otomatis */ };
+  } catch (e) { /* abaikan */ }
+}
+function mulaiDetak() {
+  if (!SINKRON.jalan || SINKRON.detak) return;
+  SINKRON.detak = setInterval(() => {
+    if (!ME) return;
+    DB.online = DB.online || {};
+    DB.online[ME.username] = Date.now();
+    simpan();              /* sebar status online terbaru ke perangkat lain */
+    perbaruiOnline();
+  }, 15000);
+}
+
+function cariUser(u) {
+  u = String(u || '').trim().toLowerCase();
+  return DB.users.find(x => x.username.toLowerCase() === u) || null;
+}
+function cariGmail(g) {
+  g = normalMail(g);
+  if (!g) return null;
+  return DB.users.find(x => (x.gmail || '').toLowerCase() === g) || null;
+}
+function kirimMail(ke, {judul, isi, kode, dari}) {
+  ke = (ke || '').toLowerCase();
+  if (!ke) return;
+  DB.mails[ke] = DB.mails[ke] || [];
+  DB.mails[ke].unshift({id:uid(), dari: dari || 'Naell Shop <naeldevshop@gmail.com.nael>',
+    judul, isi, kode: kode || '', time: Date.now(), dibaca:false});
+  simpan();
+}
+function aktivitas(teks) {
+  DB.aktivitas.unshift({id:uid(), teks, time:Date.now()});
+  DB.aktivitas = DB.aktivitas.slice(0, 80);
+  const admin = DB.users.find(x => x.gmail === 'naeldevshop@gmail.com.nael');
+  if (admin) kirimMail(admin.gmail, {judul:'Aktivitas Pengguna', isi:teks, dari:'Sistem Naell Shop <naeldevshop@gmail.com.nael>'});
+  simpan();
+}
+
+/* ---------------- NOTIFIKASI & TOAST ---------------- */
+let __audioCtx = null;
+function bunyiNotif() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    __audioCtx = __audioCtx || new AC();
+    if (__audioCtx.state === 'suspended') __audioCtx.resume();
+    const now = __audioCtx.currentTime;
+    [0, 0.15].forEach((t, i) => {
+      const o = __audioCtx.createOscillator(), g = __audioCtx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(i ? 1245 : 880, now + t);
+      g.gain.setValueAtTime(0.0001, now + t);
+      g.gain.exponentialRampToValueAtTime(0.16, now + t + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + t + 0.13);
+      o.connect(g); g.connect(__audioCtx.destination);
+      o.start(now + t); o.stop(now + t + 0.16);
+    });
+  } catch (e) { /* audio tidak tersedia */ }
+}
+function toast(msg, jenis = '') {
+  const el = document.createElement('div');
+  el.className = 'toast ' + jenis;
+  el.textContent = msg;
+  $('#toast-root').appendChild(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+  setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 2600);
+}
+function notif({judul, isi, kode, jenis = '', aksi = []}) {
+  bunyiNotif();
+  const el = document.createElement('div');
+  el.className = 'notif ' + jenis;
+  el.innerHTML = `<h4>${esc(judul)}</h4>${isi ? `<p>${esc(isi)}</p>` : ''}
+    ${kode ? `<div class="code">${esc(kode)}</div>` : ''}
+    ${aksi.length ? `<div class="acts"></div>` : ''}`;
+  if (aksi.length) {
+    const box = $('.acts', el);
+    aksi.forEach(a => {
+      const b = document.createElement('button');
+      b.className = 'btn ' + (a.gaya || 'sm');
+      b.textContent = a.label;
+      b.onclick = () => { if (a.onClick) a.onClick(); el.remove(); };
+      box.appendChild(b);
+    });
+  }
+  $('#notif-root').appendChild(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+  const hidup = kode ? 25000 : 9000;
+  setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 400); }, hidup);
+}
+
+/* ---------------- MODAL ---------------- */
+let modalNow = null;
+function bukaModal(html, opsi = {}) {
+  tutupModal();
+  const root = $('#modal-root');
+  root.classList.add('open');
+  root.innerHTML = `<div class="backdrop"></div><div class="sheet">${html}</div>`;
+  modalNow = root;
+  if (opsi.lebar) $('.sheet', root).style.maxWidth = opsi.lebar;
+  $('.backdrop', root).onclick = () => { if (!opsi.kunci) { tutupModal(); if (opsi.onBatal) opsi.onBatal(); } };
+  return root;
+}
+function tutupModal() { const r = $('#modal-root'); r.classList.remove('open'); r.innerHTML = ''; modalNow = null; }
+function tanyaYa(judul, isi, opsi = {}) {
+  return new Promise(res => {
+    bukaModal(`
+      <div class="sheet-head"><h3>${esc(judul)}</h3>${isi ? `<p>${isi}</p>` : ''}</div>
+      <div class="sheet-foot" style="padding-top:18px">
+        <button class="btn ${opsi.gayaYa || 'ok'}" data-y>${esc(opsi.ya || 'Ya')}</button>
+        <button class="btn ghost" data-t>${esc(opsi.tidak || 'Tidak')}</button>
+      </div>`, opsi);
+    $('[data-y]').onclick = () => { tutupModal(); res(true); };
+    $('[data-t]').onclick = () => { tutupModal(); res(false); };
+  });
+}
+function tanyaIsi(judul, isi, opsi = {}) {
+  return new Promise(res => {
+    bukaModal(`
+      <div class="sheet-head"><h3>${esc(judul)}</h3>${isi ? `<p>${isi}</p>` : ''}</div>
+      <div class="sheet-body">
+        <div class="field"><label>${esc(opsi.label || 'Isi')}</label>
+          <input id="ask-in" class="input" placeholder="${esc(opsi.ph || '')}" ${opsi.type ? `type="${opsi.type}"` : ''}></div>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn" id="ask-ok">${esc(opsi.tombol || 'Simpan')}</button>
+        <button class="btn ghost" id="ask-no">Batal</button>
+      </div>`, {onBatal: () => res(null)});
+    $('#ask-ok').onclick = () => { const v = $('#ask-in').value; tutupModal(); res(v); };
+    $('#ask-no').onclick = () => { tutupModal(); res(null); };
+    setTimeout(() => $('#ask-in').focus(), 60);
+  });
+}
+/* Perkecil gambar (agar tidak melebihi kuota localStorage & cepat dimuat) */
+const KANVAS_OK = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext && c.getContext('2d')); } catch (e) { return false; } })();
+function kompresGambar(dataUrl, maks = 1000, kualitas = 0.72) {
+  if (!KANVAS_OK) return Promise.resolve(dataUrl);
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      try {
+        let w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+        if (w > maks || h > maks) { const s = Math.min(maks / w, maks / h); w = Math.round(w * s); h = Math.round(h * s); }
+        const c = document.createElement('canvas'); c.width = w; c.height = h;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(img, 0, 0, w, h);
+        resolve(c.toDataURL('image/jpeg', kualitas));
+      } catch (e) { resolve(dataUrl); }
+    };
+    img.onerror = () => resolve(dataUrl);
+    img.src = dataUrl;
+  });
+}
+function pilihFile() {
+  return new Promise(res => {
+    const inp = $('#file-input');
+    inp.onchange = () => {
+      const f = inp.files && inp.files[0];
+      if (!f) { res(null); return; }
+      const r = new FileReader();
+      r.onload = async () => {
+        const hasil = await kompresGambar(String(r.result));
+        inp.value = ''; /* reset SETELAH dibaca agar file tidak batal di iOS/Android */
+        res(hasil);
+      };
+      r.onerror = () => { inp.value = ''; res(null); };
+      r.readAsDataURL(f);
+    };
+    inp.click();
+  });
+}
+
+/* ---------------- KODE VERIFIKASI (dari notifikasi / Gmail) ---------------- */
+function kirimKode(ke, keperluan) {
+  const kode = angka6();
+  kirimMail(ke, {judul:'Kode Verifikasi Naell Shop', kode: kode,
+    isi:`Kode ${keperluan}: ${kode}. Kode berlaku 5 menit. Jangan bagikan kode ini kepada siapa pun.`});
+  notif({judul:'Notifikasi Perangkat', isi:`Kode ${keperluan} telah dikirim ke ${ke}. Masukkan kode berikut di halaman yang meminta.`,
+    kode: kode, aksi:[{label:'Tutup', gaya:'ghost sm'}]});
+  return kode;
+}
+function mintaKode(ke, keperluan) {
+  return new Promise(res => {
+    const kode = kirimKode(ke, keperluan);
+    let selesai = false;
+    bukaModal(`
+      <div class="sheet-head"><h3>Masukkan Kode</h3>
+        <p>Sistem sudah mengirim notifikasi ke perangkatmu. Kode juga tersimpan di Gmail Naell Shop kamu.</p></div>
+      <div class="sheet-body">
+        <div class="field"><label>Kode (6 angka)</label>
+          <input id="mc-in" class="code-input" maxlength="6" inputmode="numeric" placeholder="------"></div>
+        <div id="mc-err" class="err"></div>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn" id="mc-ok">Verifikasi</button>
+        <button class="btn ghost" id="mc-kirim">Kirim Ulang</button>
+      </div>`, {kunci:true});
+    const cek = () => {
+      const v = $('#mc-in').value.trim();
+      if (v !== kode) { const e = $('#mc-err'); e.textContent = 'Kode salah. Periksa notifikasi/Gmail lalu coba lagi.'; e.classList.add('show'); return; }
+      selesai = true; tutupModal(); res(true);
+    };
+    $('#mc-ok').onclick = cek;
+    $('#mc-in').onkeydown = e => { if (e.key === 'Enter') cek(); };
+    $('#mc-kirim').onclick = () => { tutupModal(); if (!selesai) res('ulang'); };
+    setTimeout(() => { const i = $('#mc-in'); if (i) i.focus(); }, 80);
+  });
+}
+
+/* ---------------- AUTENTIKATOR (kode 30 detik) ---------------- */
+function kodeAutentikator(secret, t = Date.now()) {
+  const step = Math.floor(t / 30000);
+  let h = 2166136261;
+  const s = secret + '|' + step;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return String(Math.abs(h) % 1000000).padStart(6, '0');
+}
+const sisaAutentikator = () => 30 - Math.floor((Date.now() % 30000) / 1000);
+
+/* ---------------- POLA (pattern lock) ---------------- */
+function gambarPola(judul, sub) {
+  return new Promise(res => {
+    let urut = [], selesai = false;
+    bukaModal(`
+      <div class="sheet-head"><h3>${esc(judul)}</h3><p>${esc(sub)}</p></div>
+      <div class="sheet-body" style="padding-bottom:6px">
+        <div class="pattern" id="pol">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none"><polyline id="pol-line" fill="none"
+            stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points=""></polyline></svg>
+          <div class="pgrid"></div>
+        </div>
+        <div class="tiny muted" style="text-align:center">Ketuk minimal 4 titik, lalu tekan <b>Lanjut</b>.</div>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn" id="pol-ok">Lanjut</button>
+        <button class="btn ghost" id="pol-hapus">Hapus</button>
+      </div>`, {kunci:true});
+    const grid = $('.pgrid');
+    const pos = i => [(i % 3 * 2 + 1) / 6 * 100, (Math.floor(i / 3) * 2 + 1) / 6 * 100];
+    for (let i = 0; i < 9; i++) {
+      const d = document.createElement('button');
+      d.className = 'pdot'; d.dataset.i = i; d.innerHTML = '<i></i>';
+      d.onclick = () => {
+        if (urut.includes(i)) return;
+        urut.push(i); d.classList.add('on');
+        $('#pol-line').setAttribute('points', urut.map(k => pos(k).join(',')).join(' '));
+      };
+      grid.appendChild(d);
+    }
+    $('#pol-hapus').onclick = () => { urut = []; $$('.pdot').forEach(d => d.classList.remove('on')); $('#pol-line').setAttribute('points',''); };
+    $('#pol-ok').onclick = () => {
+      if (urut.length < 4) { toast('Pola minimal 4 titik', 'err'); return; }
+      selesai = true; tutupModal(); res(urut.join('-'));
+    };
+    $('.backdrop').onclick = () => { if (!selesai) { tutupModal(); res(null); } };
+  });
+}
+/* ---------------- SIDIK JARI / WAJAH / GOOGLE (simulasi di browser) ---------------- */
+function verifikasiVisual(judul, tombol, ket) {
+  return new Promise(res => {
+    bukaModal(`
+      <div class="sheet-head" style="text-align:center"><h3>${esc(judul)}</h3></div>
+      <div class="sheet-body verify-visual">
+        <div class="scan" id="scan-ic"><span class="muted tiny">${esc(ket || '')}</span></div>
+        <div class="tiny muted" id="scan-msg">Tekan tombol di bawah untuk memulai.</div>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn" id="scan-go">${esc(tombol)}</button>
+        <button class="btn ghost" id="scan-no">Batal</button>
+      </div>`);
+    $('#scan-no').onclick = () => { tutupModal(); res(false); };
+    $('#scan-go').onclick = () => {
+      const ic = $('#scan-ic'); ic.classList.add('scanning');
+      $('#scan-msg').textContent = 'Memverifikasi…';
+      $('#scan-go').disabled = true;
+      setTimeout(() => {
+        ic.classList.remove('scanning'); ic.classList.add('ok');
+        ic.innerHTML = '<strong style="color:#059669">OK</strong>';
+        $('#scan-msg').textContent = 'Identitas terverifikasi.';
+        setTimeout(() => { tutupModal(); res(true); }, 550);
+      }, 1200);
+    };
+  });
+}
+const TIPE_PASSKEY = {pattern:'Pola', face:'Wajah', finger:'Sidik Jari', google:'Sandi Google'};
+async function jalankanPasskey(tipe) {
+  if (tipe === 'pattern') return await gambarPola('Verifikasi Bahwa Ini Anda', 'Gambar pola keamananmu untuk melanjutkan.');
+  if (tipe === 'finger') return await verifikasiVisual('Verifikasi Bahwa Ini Anda', 'Pindai Sidik Jari', 'Sidik Jari');
+  if (tipe === 'face')   return await verifikasiVisual('Verifikasi Bahwa Ini Anda', 'Pindai Wajah', 'Wajah');
+  return await verifikasiVisual('Verifikasi Bahwa Ini Anda', 'Pilih Akun Google', 'Google');
+}
+
+/* ---------------- NAVIGASI LAYAR ---------------- */
+function layar(id) { $$('.screen').forEach(s => s.classList.toggle('active', s.id === id)); window.scrollTo(0, 0); }
+
+/* =========================================================
+   AUTH
+   ========================================================= */
+function tampilErr(sel, msg) { const e = $(sel); e.textContent = msg; e.classList.add('show'); }
+function sembunyiErr(sel) { $(sel).classList.remove('show'); }
+
+async function masuk() {
+  sembunyiErr('#login-err');
+  const u = $('#lg-user').value.trim(), p = $('#lg-pass').value, m = $('#lg-mail').value.trim();
+  if (!u || !p) return tampilErr('#login-err', 'Username dan Password wajib diisi.');
+  const user = cariUser(u);
+  if (!user) return tampilErr('#login-err', 'Akun tidak ditemukan. Silakan daftar terlebih dahulu.');
+  if (dec(user.pass) !== p) return tampilErr('#login-err', 'Password salah.');
+  if (m) {
+    if (!user.gmail) return tampilErr('#login-err', 'Akun ini tidak memakai Gmail. Kosongkan kolom Gmail.');
+    if (normalMail(m) !== (user.gmail || '').toLowerCase()) return tampilErr('#login-err', 'Gmail tidak cocok dengan akun ini.');
+  }
+  /* multi login di perangkat lain */
+  const dev = deviceId();
+  if (!user.multiLogin && DB.lastDevice[user.username] && DB.lastDevice[user.username] !== dev) {
+    return tampilErr('#login-err', 'Akun ini tidak dapat login di perangkat lain (izin multi-login dimatikan).');
+  }
+  /* keamanan berlaku saat login (ulang) */
+  const lolos = await pemeriksaanKeamanan(user);
+  if (!lolos) return;
+  DB.lastDevice[user.username] = dev;
+  DB.session = user.username; simpan();
+  ME = user;
+  aktivitas(`${user.nama} (@${user.username}) baru saja login ke Naell Shop.`);
+  masukLayarWelcome();
+}
+
+/* pemeriksaan PassCode / PassKey / 2FA saat login */
+async function pemeriksaanKeamanan(user) {
+  const sec = user.security || {};
+  if (sec.passcode) {
+    const c = await tanyaIsi('Verifikasi Bahwa Ini Anda', 'Masukkan PassCode (6 angka) milikmu untuk masuk.', {label:'PassCode', ph:'6 angka', type:'password'});
+    if (c === null) return false;
+    if (String(c).trim() !== sec.passcode) { toast('PassCode salah', 'err'); return false; }
+  }
+  if (sec.passkey && sec.passkey.tipe) {
+    const hasil = await jalankanPasskey(sec.passkey.tipe);
+    if (!hasil) { toast('Verifikasi PassKey dibatalkan', 'err'); return false; }
+    if (sec.passkey.tipe === 'pattern' && hasil !== sec.passkey.pola) { toast('Pola salah', 'err'); return false; }
+  }
+  if (sec.twofa && sec.twofa.on) {
+    const ok = await verifikasi2FA(user);
+    if (!ok) return false;
+  }
+  return true;
+}
+
+async function verifikasi2FA(user) {
+  const twofa = user.security.twofa;
+  if (twofa.method === 'mail') {
+    const r = await mintaKode(user.gmail, 'verifikasi 2 langkah');
+    return r === true;
+  }
+  return await new Promise(res => {
+    let selesai = false;
+    const render = () => {
+      const kode = kodeAutentikator(twofa.secret);
+      const sisa = sisaAutentikator();
+      return `<div class="sheet-head"><h3>Verifikasi Bahwa Ini Anda</h3>
+        <p>Masukkan kode 6 angka dari aplikasi Autentikator (berubah setiap 30 detik).</p></div>
+      <div class="sheet-body">
+        <div class="item" style="text-align:center;background:#fbfcff">
+          <div class="tiny muted">Kode Autentikator saat ini</div>
+          <div class="authen-code">${kode}</div>
+          <div class="tiny muted">Berlaku ${sisa} detik lagi</div>
+        </div>
+        <div class="field" style="margin-top:14px"><label>Kode Autentikator</label>
+          <input id="tfa-in" class="code-input" maxlength="6" inputmode="numeric" placeholder="------"></div>
+        <div id="tfa-err" class="err"></div>
+      </div>
+      <div class="sheet-foot"><button class="btn" id="tfa-ok">Verifikasi</button>
+        <button class="btn ghost" id="tfa-no">Batal</button></div>`;
+    };
+    bukaModal(render());
+    const cek = () => {
+      const v = $('#tfa-in').value.trim();
+      if (v !== kodeAutentikator(twofa.secret)) { const e = $('#tfa-err'); e.textContent = 'Kode salah atau sudah kedaluwarsa.'; e.classList.add('show'); return; }
+      selesai = true; tutupModal(); res(true);
+    };
+    $('#tfa-ok').onclick = cek;
+    $('#tfa-no').onclick = () => { if (!selesai) { tutupModal(); res(false); } };
+    const tick = setInterval(() => {
+      if (!$('#tfa-in')) return clearInterval(tick);
+      const box = $('.authen-code'); if (box) box.textContent = kodeAutentikator(twofa.secret);
+      const list = $$('.sheet-body .tiny.muted'); if (list[1]) list[1].textContent = 'Berlaku ' + sisaAutentikator() + ' detik lagi';
+    }, 1000);
+  });
+}
+
+function masukLayarWelcome() {
+  const av = $('#wc-av');
+  av.innerHTML = ME.avatar ? `<img src="${ME.avatar}">` : esc((ME.nama || ME.username).charAt(0).toUpperCase());
+  $('#wc-name').textContent = ME.nama || ME.username;
+  layar('screen-welcome');
+}
+
+function mulaiLoading() {
+  layar('screen-loading');
+  const bar = $('#ld-bar'), pct = $('#ld-pct');
+  let t = 0;
+  const iv = setInterval(() => {
+    t += 100 / 30;
+    bar.style.width = Math.min(100, t) + '%';
+    pct.textContent = Math.round(Math.min(100, t)) + '%';
+  }, 100);
+  setTimeout(() => {
+    clearInterval(iv);
+    bar.style.width = '100%'; pct.textContent = '100%';
+    bukaAplikasi();
+  }, 3050);
+}
+
+function keluar() {
+  clearInterval(window.__auTick);
+  if (ME && DB.online) delete DB.online[ME.username];
+  DB.session = null; simpan(); ME = null; modalRootBersih();
+  $('#lg-user').value = ''; $('#lg-pass').value = ''; $('#lg-mail').value = '';
+  sembunyiErr('#login-err');
+  layar('screen-login'); perbaruiOnline();
+}
+function modalRootBersih() { tutupModal(); }
+
+/* ---------------- DAFTAR ---------------- */
+function daftar() {
+  sembunyiErr('#rg-err');
+  const nama = $('#rg-nama').value.trim(), u = $('#rg-user').value.trim(),
+        p = $('#rg-pass').value, m = $('#rg-mail').value.trim();
+  if (!nama || !u || !p) return tampilErr('#rg-err', 'Nama, Username, dan Password wajib diisi.');
+  if (u.length < 3) return tampilErr('#rg-err', 'Username minimal 3 karakter.');
+  if (p.length < 5) return tampilErr('#rg-err', 'Password minimal 5 karakter.');
+  if (cariUser(u)) return tampilErr('#rg-err', 'Username sudah dipakai. Coba yang lain.');
+  const gmail = normalMail(m);
+  if (gmail && cariGmail(gmail)) return tampilErr('#rg-err', 'Gmail sudah dipakai akun lain.');
+  DB.users.push({
+    username: u, nama, pass: enc(p), gmail, isAdmin:false, avatar:'', multiLogin:true,
+    joinedMarket:false, joinedAt: Date.now(),
+    security:{passcode:'', passkey:null, twofa:{on:false, method:'', secret:''}}
+  });
+  if (gmail) kirimMail(gmail, {judul:'Selamat Datang di Naell Shop',
+    isi:`Hai ${nama}, akun Naell Shop kamu berhasil dibuat. Gmail ini: ${gmail}. Simpan baik-baik untuk pemulihan akun.`});
+  simpan();
+  aktivitas(`Akun baru terdaftar: ${nama} (@${u})${gmail ? ' dengan Gmail ' + gmail : ''}.`);
+  toast('Akun berhasil dibuat. Silakan login.', 'ok');
+  notif({judul:'Akun Baru Dibuat', isi:`Halo ${nama}, akun Naell Shop kamu siap digunakan.`});
+  $('#lg-user').value = u; $('#lg-pass').value = ''; $('#lg-mail').value = gmail;
+  layar('screen-login');
+}
+
+/* ---------------- PULIHKAN AKUN ---------------- */
+let rcUser = null;
+function pulihkanReset() {
+  rcUser = null;
+  $('#rc-step1').classList.remove('hidden');
+  $('#rc-step2').classList.add('hidden');
+  $('#rc-step3').classList.add('hidden');
+  $('#rc-code').value = ''; $('#rc-new').value = '';
+  sembunyiErr('#rc-err');
+}
+async function pulihkanLanjut() {
+  sembunyiErr('#rc-err');
+  const g = normalMail($('#rc-mail').value);
+  if (!g) return tampilErr('#rc-err', 'Masukkan Gmail yang terdaftar.');
+  if (g === 'naeldevshop@gmail.com.nael') return tampilErr('#rc-err', 'Gmail ini khusus admin. Gunakan menu pemulihan akun biasa.');
+  const user = cariGmail(g);
+  if (!user) return tampilErr('#rc-err', 'Gmail tidak ditemukan pada akun mana pun.');
+  const ya = await tanyaYa('Apakah Ini anda?',
+    `<b>${esc(user.nama)}</b> (@${esc(user.username)})<br><span class="tiny muted">Gmail: ${esc(user.gmail)}</span>`,
+    {ya:'Ya', tidak:'Tidak'});
+  if (!ya) { toast('Pemulihan dibatalkan. Gmail bukan milikmu.'); return; }
+  rcUser = user;
+  $('#rc-step1').classList.add('hidden');
+  $('#rc-step2').classList.remove('hidden');
+  $('#rc-device').innerHTML = `Notifikasi kode dikirim ke perangkat yang login dengan Gmail <b>${esc(g)}</b>.`;
+  kirimKode(g, 'pemulihan akun');
+}
+async function pulihkanVerifikasi() {
+  sembunyiErr('#rc-err');
+  if (!rcUser) return;
+  const v = $('#rc-code').value.trim();
+  const benar = DB.mails[(rcUser.gmail || '').toLowerCase()]?.find(x => x.kode)?.kode;
+  if (!v || v !== benar) return tampilErr('#rc-err', 'Kode verifikasi salah. Periksa notifikasi lalu masukkan 6 angka dengan benar.');
+  $('#rc-step2').classList.add('hidden');
+  $('#rc-step3').classList.remove('hidden');
+  $('#rc-user').value = rcUser.username;
+  $('#rc-pass').value = dec(rcUser.pass);
+  notif({judul:'Akun Ditemukan', isi:`Username: ${rcUser.username} · Password: ${dec(rcUser.pass)}`});
+}
+function pulihkanSimpan() {
+  sembunyiErr('#rc-err');
+  const baru = $('#rc-new').value;
+  if (!baru || baru.length < 5) return tampilErr('#rc-err', 'Password baru minimal 5 karakter.');
+  rcUser.pass = enc(baru); simpan();
+  aktivitas(`Password akun @${rcUser.username} diganti lewat pemulihan akun.`);
+  if (rcUser.gmail) kirimMail(rcUser.gmail, {judul:'Password Berhasil Diganti',
+    isi:`Password akun Naell Shop kamu (@${rcUser.username}) berhasil diganti lewat menu Pulihkan Akun. Jika bukan kamu yang melakukannya, segera hubungi admin.`});
+  toast('Password berhasil diganti', 'ok');
+  $('#rc-pass').value = baru; $('#rc-new').value = '';
+}
+
+/* =========================================================
+   PANEL ADMIN SEDERHANA DI BANK DATA
+   ========================================================= */
+function tambahProduk(o) {
+  const p = {id:uid(), nama:o.nama, harga:Number(o.harga)||0, stok:Number(o.stok)||0,
+    ket:o.ket||'', foto:o.foto||'', seller:ME.username, time:Date.now()};
+  DB.produk.unshift(p);
+  DB.users.forEach(u => { if (u.gmail && !u.isAdmin) kirimMail(u.gmail, {judul:'Ada Produk Baru Dari Nael',
+    isi:`Produk baru: ${p.nama} — ${rupiah(p.harga)}. Stok ${p.stok}. Cek Sekarang di Naell Shop!`}); });
+  simpan();
+  tampilBannerProdukBaru(p);
+  notif({judul:'Ada Produk Baru Dari Nael', isi:`${p.nama} baru saja ditambahkan. Cek Sekarang!`,
+    aksi:[{label:'Cek Sekarang', gaya:'sm', onClick:() => { TAB='toko'; renderApp(); }}]});
+  return p;
+}
+function tampilBannerProdukBaru(p) {
+  const wrap = $('#app-main'); if (!wrap || TAB !== 'toko') return;
+  const b = $('#banner-produk');
+  if (b) b.remove();
+  const el = document.createElement('div');
+  el.id = 'banner-produk'; el.className = 'banner';
+  el.innerHTML = `<div class="grow"><strong>Ada Produk Baru Dari Nael</strong><br>
+    <span class="tiny muted">${esc(p.nama)} · ${rupiah(p.harga)}</span></div>
+    <button class="btn sm">Cek Sekarang</button>`;
+  $('.btn', el).onclick = () => el.remove();
+  wrap.insertBefore(el, wrap.firstChild);
+}
+
+/* =========================================================
+   SHELL APLIKASI
+   ========================================================= */
+const IKON = {
+  toko:'<path d="M4 8h16l-1.3 11.5H5.3L4 8Z"/><path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2"/>',
+  cart:'<path d="M3 5h2.2L7.6 15.5h9.9L20 8H6"/><circle cx="9" cy="19" r="1.4"/><circle cx="17.2" cy="19" r="1.4"/>',
+  order:'<path d="M7 3h10v18l-2.5-1.6L12 21l-2.5-1.6L7 21V3Z"/><path d="M9.6 8.5h4.8M9.6 12.5h4.8"/>',
+  pasar:'<path d="M4 9h16v11H4z"/><path d="M4 9l1.8-5h12.4L20 9"/><path d="M10 20v-5.5h4V20"/>',
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7.5 8 5.6 8-5.6"/>',
+  set:'<circle cx="12" cy="12" r="3.2"/><path d="M12 3.5v2.3M12 18.2v2.3M4 12h2.3M17.7 12H20M6.2 6.2l1.6 1.6M16.2 16.2l1.6 1.6M17.8 6.2l-1.6 1.6M7.8 16.2l-1.6 1.6"/>',
+  report:'<path d="M12 3.5 22 20H2L12 3.5Z"/><path d="M12 10v4.2M12 17.2v.1"/>',
+  mc:'<circle cx="9" cy="8" r="3.1"/><path d="M3.6 19.5c0-3 2.4-5.2 5.4-5.2s5.4 2.2 5.4 5.2"/><path d="M16.2 5.4a3 3 0 0 1 0 5.4M17.2 14.6c2 .5 3.2 2.3 3.2 4.9"/>',
+  testi:'<path d="M12 3.6l2.5 5.3 5.8.8-4.2 4 1 5.8-5.1-2.8-5.1 2.8 1-5.8-4.2-4 5.8-.8L12 3.6Z"/>'
+};
+const ICO = (n, s = 21) => `<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${IKON[n]}</svg>`;
+const NAV = [['toko','Toko','toko'],['keranjang','Keranjang','cart'],['pesanan','Pesanan','order'],
+             ['pasar','Pasar','pasar'],['mc','MC','mc'],['testi','Testimoni','testi'],
+             ['laporan','Laporan','report'],['gmail','Gmail','mail'],['setelan','Setelan','set']];
+const JUDUL_TAB = {toko:'Toko', keranjang:'Keranjang', pesanan:'Pesanan', pasar:'Pasar Jual Beli',
+                   mc:'MC — Orang Ketiga Pembayaran', testi:'Testimoni Nael',
+                   laporan:'Laporan Produk', gmail:'Gmail Naell Shop', setelan:'Pengaturan'};
+
+/* ---------------- ONLINE ---------------- */
+const ONLINE_TTL = 45000; /* dianggap online bila aktif < 45 detik lalu */
+function tandaiOnline() {
+  if (!ME) return;
+  DB.online = DB.online || {}; DB.online[ME.username] = Date.now(); simpan();
+}
+function orangOnline() {
+  const now = Date.now();
+  return DB.users.filter(u => DB.online && DB.online[u.username] && (now - DB.online[u.username]) < ONLINE_TTL).length;
+}
+function perbaruiOnline() {
+  const n = orangOnline();
+  [['#hd-online'], ['#lg-online']].forEach(([sel]) => {
+    const el = $(sel); if (el) el.innerHTML = `<span class="dot-on"></span> ${n} online`;
+  });
+}
+
+function bukaAplikasi() {
+  if (!ME) { layar('screen-login'); return; }
+  ME.cart = ME.cart || []; ME.auths = ME.auths || [];
+  TAB = 'toko'; layar('screen-app'); tandaiOnline(); renderApp();
+}
+function renderApp() {
+  tandaiOnline();
+  const av = $('#hd-av');
+  av.innerHTML = ME.avatar ? `<img src="${ME.avatar}">` : esc((ME.nama || ME.username).charAt(0).toUpperCase());
+  $('#hd-admin').textContent = ME.role || 'Admin';
+  $('#hd-admin').classList.toggle('hidden', !ME.isAdmin);
+  $('#hd-sub').textContent = JUDUL_TAB[TAB] || 'Naell Shop';
+  perbaruiOnline();
+
+  const badge = {keranjang: ME.cart.length, gmail: mailBelumDibaca(),
+                 laporan: DB.reports.filter(r => r.status === 'baru').length,
+                 pesanan: ME.isAdmin ? DB.orders.filter(o => o.sumber !== 'pasar' && o.status === 'baru').length
+                                     : DB.orders.filter(o => (o.buyer === ME.username || o.seller === ME.username) && o.status === 'baru').length};
+  const navs = NAV.filter(([k]) => k !== 'laporan' || ME.isAdmin);
+  $('#app-nav').innerHTML = navs.map(([k, label, ik]) => `
+    <button class="navbtn ${TAB === k ? 'active' : ''}" data-tab="${k}">
+      ${ICO(ik)}<span>${label}</span>${badge[k] ? `<span class="dot">${badge[k]}</span>` : ''}
+    </button>`).join('');
+  $$('#app-nav .navbtn').forEach(b => b.onclick = () => { TAB = b.dataset.tab; renderApp(); });
+
+  $('#app-main').innerHTML = '';
+  ({toko:renderToko, keranjang:renderKeranjang, pesanan:renderPesanan, pasar:renderPasar,
+    mc:renderMC, testi:renderTestimoni,
+    laporan:renderLaporan, gmail:renderGmail, setelan:renderSetelan}[TAB] || renderToko)();
+}
+function mailBelumDibaca() {
+  if (!ME.gmail) return 0;
+  return (DB.mails[ME.gmail.toLowerCase()] || []).filter(m => !m.dibaca).length;
+}
+function thumbHTML(foto, nama, cls = 'thumb') {
+  if (foto) return `<div class="${cls}"><img src="${foto}" alt="${esc(nama)}"></div>`;
+  return `<div class="${cls}">${esc((nama || 'N').charAt(0).toUpperCase())}</div>`;
+}
+
+/* =========================================================
+   TOKO / NAEL PRODUK
+   ========================================================= */
+function renderToko() {
+  const wrap = $('#app-main');
+  wrap.innerHTML = `
+    <div class="toolbar" style="margin-bottom:14px">
+      <input id="tk-cari" class="input" style="max-width:300px;flex:1;min-width:170px" placeholder="Cari produk di Naell Shop...">
+      ${ME.isAdmin ? '<button class="btn sm" id="tk-upload">+ Upload Produk</button>' : ''}
+    </div>
+    <div class="section-head"><h3>Nael Produk</h3>
+      <span class="pill blue sp">${DB.produk.length} produk</span></div>
+    <div id="tk-grid"></div>`;
+
+  /* notifikasi produk baru dari Nael */
+  const terbaru = DB.produk[0];
+  if (terbaru && terbaru.time > (ME.lastSeenProduk || 0) && terbaru.seller !== ME.username) {
+    ME.lastSeenProduk = terbaru.time; simpan();
+    notif({judul:'Ada Produk Baru Dari Nael', isi:`${terbaru.nama} · ${rupiah(terbaru.harga)}. Cek Sekarang!`,
+      aksi:[{label:'Cek Sekarang', gaya:'sm', onClick:() => { TAB = 'toko'; renderApp(); }}]});
+    tampilBannerProdukBaru(terbaru);
+  }
+
+  const gambar = (q = '') => {
+    const q2 = q.toLowerCase();
+    const list = DB.produk.filter(p => !q2 || p.nama.toLowerCase().includes(q2) || (p.ket || '').toLowerCase().includes(q2));
+    $('#tk-grid').innerHTML = list.length ? `<div class="grid">${list.map(p => `
+      <div class="prod">
+        ${thumbHTML(p.foto, p.nama)}
+        <div class="prod-body">
+          <div class="prod-name">${esc(p.nama)}</div>
+          <div class="prod-price">${rupiah(p.harga)}</div>
+          <div class="prod-desc">${esc(p.ket)}</div>
+          <div class="tiny ${p.stok > 0 ? 'muted' : ''}" style="${p.stok > 0 ? '' : 'color:#e11d48;font-weight:700'}">
+            ${p.stok > 0 ? 'Stok: ' + p.stok : 'Stok habis'}</div>
+          <div class="prod-foot">
+            <button class="btn sm" data-beli="${p.id}" ${p.stok > 0 ? '' : 'disabled'}>+ Keranjang</button>
+            ${ME.isAdmin ? `<button class="btn ghost xs" data-edit="${p.id}">Ubah</button>
+              <button class="btn danger xs" data-hapus="${p.id}">Hapus</button>`
+              : `<button class="btn ghost xs" data-lapor="${p.id}">Lapor</button>`}
+          </div>
+        </div>
+      </div>`).join('')}</div>` : `<div class="empty">${DB.produk.length ? 'Produk tidak ditemukan.' : 'Belum ada produk yang diunggah admin.<br>Nantikan produk terbaru dari Nael ya!'}</div>`;
+    $$('[data-beli]').forEach(b => b.onclick = () => tambahKeranjang(b.dataset.beli));
+    $$('[data-edit]').forEach(b => b.onclick = () => formProduk(DB.produk.find(p => p.id === b.dataset.edit)));
+    $$('[data-hapus]').forEach(b => b.onclick = () => hapusProduk(b.dataset.hapus));
+    $$('[data-lapor]').forEach(b => b.onclick = () => laporkanProduk(DB.produk.find(p => p.id === b.dataset.lapor), 'toko'));
+  };
+  gambar();
+  $('#tk-cari').oninput = e => gambar(e.target.value);
+  if (ME.isAdmin) $('#tk-upload').onclick = () => formProduk(null);
+}
+
+function tambahKeranjang(pid, jumlah = 1) {
+  const p = DB.produk.find(x => x.id === pid); if (!p) return;
+  ME.cart = ME.cart || [];
+  const ada = ME.cart.find(c => c.pid === pid);
+  const total = (ada ? ada.qty : 0) + jumlah;
+  if (total > p.stok) { toast(`Jumlah melebihi stok. Stok tersedia ${p.stok}.`, 'err'); return; }
+  if (ada) ada.qty = total; else ME.cart.push({pid, qty: jumlah});
+  simpan(); toast(`${p.nama} masuk keranjang`, 'ok'); renderApp();
+}
+function hapusProduk(pid) {
+  tanyaYa('Hapus Produk', 'Produk ini akan dihapus dari Naell Shop.', {ya:'Hapus', gayaYa:'danger sm'})
+    .then(ya => {
+      if (!ya) return;
+      DB.produk = DB.produk.filter(p => p.id !== pid); simpan();
+      const n = selesaikanLaporan(pid, 'toko');
+      toast(n ? `Produk dihapus. ${n} pelapor sudah diberi notifikasi.` : 'Produk dihapus', 'ok');
+      renderApp();
+    });
+}
+
+/* ---------------- LAPORAN PRODUK ---------------- */
+async function laporkanProduk(p, sumber) {
+  if (!p) return;
+  if (p.seller === ME.username) return toast('Ini produkmu sendiri.', 'err');
+  const alasan = await tanyaIsi('Laporkan Produk',
+    `Laporkan "${esc(p.nama)}" ke admin Naell Shop. Tulis alasan laporanmu.`,
+    {label:'Alasan Laporan', ph:'contoh: produk palsu / penipuan / tidak sesuai'});
+  if (alasan === null) return;
+  if (!alasan.trim()) return toast('Alasan laporan wajib diisi.', 'err');
+  const rep = {id:uid(), pid:p.id, pnama:p.nama, sumber, alasan:alasan.trim(),
+    pelapor:ME.username, pelaporNama:ME.nama, time:Date.now(), status:'baru'};
+  DB.reports = DB.reports || [];
+  DB.reports.unshift(rep); simpan();
+  const admin = DB.users.find(u => u.isAdmin);
+  if (admin && admin.gmail) kirimMail(admin.gmail, {judul:'Permintaan Hapus Produk',
+    isi:`${ME.nama} (@${ME.username}) melaporkan produk "${p.nama}" (${sumber}). Alasan: ${alasan.trim()}. Mohon periksa dan hapus produk tersebut.`});
+  aktivitas(`${ME.nama} melaporkan produk "${p.nama}" (${sumber}).`);
+  notif({judul:'Laporan Terkirim', isi:'Laporanmu dikirim ke admin. Kamu akan dapat notifikasi Gmail setelah produk dihapus.'});
+  toast('Laporan terkirim ke admin', 'ok');
+  renderApp();
+}
+
+/* Menandai laporan atas sebuah produk sebagai selesai & memberi tahu pelapor via Gmail */
+function selesaikanLaporan(pid, sumber) {
+  DB.reports = DB.reports || [];
+  sumber = sumber || 'toko';
+  const terkait = DB.reports.filter(r => r.pid === pid && (r.sumber || 'toko') === sumber && r.status === 'baru');
+  terkait.forEach(r => {
+    r.status = 'selesai'; r.selesaiTime = Date.now();
+    const pelapor = DB.users.find(u => u.username === r.pelapor);
+    if (pelapor && pelapor.gmail) kirimMail(pelapor.gmail, {judul:'Laporan Anda Sudah Diterima Dan Selesai',
+      isi:`Laporan Anda terhadap produk "${r.pnama}" sudah diterima dan sudah selesai ditindaklanjuti. Produk telah dihapus oleh admin Naell Shop. Terima kasih telah menjaga Naell Shop.`});
+  });
+  simpan();
+  return terkait.length;
+}
+
+/* Hapus produk berdasarkan sumber asalnya (dipakai admin dari daftar laporan) */
+function hapusProdukByRef(pid, sumber) {
+  if (sumber === 'pasar') DB.pasar = DB.pasar.filter(p => p.id !== pid);
+  else DB.produk = DB.produk.filter(p => p.id !== pid);
+  simpan();
+  return selesaikanLaporan(pid, sumber);
+}
+
+function kartuLaporan(r) {
+  const ada = (r.sumber === 'pasar' ? DB.pasar : DB.produk).some(x => x.id === r.pid);
+  return `<div class="item">
+    <div class="row" style="align-items:center">
+      <div><span class="pill blue">${esc(r.sumber || 'toko')}</span>
+        ${r.status === 'baru' ? '<span class="pill amber">Perlu tindakan</span>' : '<span class="pill green">Selesai</span>'}</div>
+      <span class="tiny muted" style="margin-left:auto">${waktu(r.time)}</span>
+    </div>
+    <div style="margin-top:8px"><b>${esc(r.pnama)}</b>${ada ? '' : ' <span class="tiny muted">(produk sudah tidak ada)</span>'}</div>
+    <div class="tiny muted" style="margin-top:4px">Alasan: ${esc(r.alasan)}</div>
+    <div class="tiny muted" style="margin-top:4px">Pelapor: ${esc(r.pelaporNama)} (@${esc(r.pelapor)})</div>
+    ${r.status === 'baru'
+      ? `<button class="btn danger sm" id="hp-${r.id}" style="margin-top:9px">Hapus Produk &amp; Selesaikan Laporan</button>`
+      : '<div class="tiny" style="margin-top:9px;color:#059669">Laporan selesai — pelapor sudah diberi notifikasi Gmail.</div>'}
+  </div>`;
+}
+
+function pasangAksiLaporan(r) {
+  const btn = $('#hp-' + r.id);
+  if (!btn) return;
+  btn.onclick = async () => {
+    const ya = await tanyaYa('Hapus Produk?', `Hapus "${esc(r.pnama)}" dari ${esc(r.sumber || 'toko')} dan selesaikan laporan ini?`,
+      {ya:'Hapus', gayaYa:'danger sm'});
+    if (!ya) return;
+    const n = hapusProdukByRef(r.pid, r.sumber);
+    toast(n ? 'Produk dihapus. Pelapor sudah diberi notifikasi.' : 'Produk dihapus', 'ok');
+    renderApp();
+  };
+}
+
+/* ---------------- VIEW ADMIN: LAPORAN ---------------- */
+function renderLaporan() {
+  const wrap = $('#app-main');
+  const baru = DB.reports.filter(r => r.status === 'baru');
+  const selesai = DB.reports.filter(r => r.status !== 'baru');
+  wrap.innerHTML = `
+    <div class="section-head"><h3>Laporan Produk</h3>
+      <span class="pill blue sp">${DB.reports.length} laporan</span></div>
+    <p class="sub" style="margin:-4px 0 6px">Laporan dari pengguna tentang produk toko atau Pasar. Hapus produk untuk menindaklanjuti; pelapor otomatis menerima notifikasi Gmail bahwa laporannya sudah selesai.</p>
+    <div class="section-head"><h3>Perlu Tindakan</h3>
+      <span class="pill amber sp">${baru.length}</span></div>
+    <div id="lp-baru" class="list"></div>
+    <div class="section-head"><h3>Selesai</h3>
+      <span class="pill green sp">${selesai.length}</span></div>
+    <div id="lp-selesai" class="list"></div>`;
+  $('#lp-baru').innerHTML = baru.length ? baru.map(kartuLaporan).join('')
+    : '<div class="empty">Tidak ada laporan yang perlu tindakan.</div>';
+  $('#lp-selesai').innerHTML = selesai.length ? selesai.map(kartuLaporan).join('')
+    : '<div class="empty">Belum ada laporan yang selesai.</div>';
+  DB.reports.forEach(pasangAksiLaporan);
+}
+function formProduk(p) {
+  bukaModal(`
+    <div class="sheet-head"><h3>${p ? 'Ubah Produk' : 'Upload Produk'}</h3>
+      <p>Hanya Admin / Developer Naell Shop yang dapat mengunggah produk.</p></div>
+    <div class="sheet-body">
+      <div class="field"><label>Foto Produk</label>
+        <div class="row" style="align-items:center">
+          ${thumbHTML(p && p.foto, p ? p.nama : 'N', 'thumb-sm')}
+          <button class="btn ghost sm" id="pr-foto">Pilih dari Galeri</button>
+          <button class="btn ghost sm" id="pr-foto-hapus">Hapus Foto</button>
+        </div></div>
+      <div class="field"><label>Nama Produk</label><input id="pr-nama" class="input" value="${esc(p ? p.nama : '')}"></div>
+      <div class="row">
+        <div class="field grow"><label>Keterangan</label><textarea id="pr-ket" class="input">${esc(p ? p.ket : '')}</textarea></div>
+      </div>
+      <div class="row">
+        <div class="field grow"><label>Harga (Rp)</label><input id="pr-harga" class="input" inputmode="numeric" value="${p ? p.harga : ''}"></div>
+        <div class="field grow"><label>Stok</label><input id="pr-stok" class="input" inputmode="numeric" value="${p ? p.stok : ''}"></div>
+      </div>
+      <div id="pr-err" class="err"></div>
+    </div>
+    <div class="sheet-foot"><button class="btn" id="pr-save">${p ? 'Simpan Perubahan' : 'Upload Produk'}</button>
+      <button class="btn ghost" id="pr-no">Batal</button></div>`);
+  let foto = p ? p.foto : '';
+  const lu = () => { const t = $('.thumb-sm'); t.outerHTML = thumbHTML(foto, $('#pr-nama').value || 'N', 'thumb-sm'); };
+  $('#pr-foto').onclick = async () => { const d = await pilihFile(); if (d) { foto = d; lu(); } };
+  $('#pr-foto-hapus').onclick = () => { foto = ''; lu(); };
+  $('#pr-no').onclick = tutupModal;
+  $('#pr-save').onclick = () => {
+    const nama = $('#pr-nama').value.trim(), harga = $('#pr-harga').value, stok = $('#pr-stok').value;
+    if (!nama) { tampilErr('#pr-err', 'Nama produk wajib diisi.'); return; }
+    if (harga === '' || isNaN(Number(harga))) { tampilErr('#pr-err', 'Harga wajib berupa angka.'); return; }
+    if (stok === '' || isNaN(Number(stok))) { tampilErr('#pr-err', 'Stok wajib berupa angka.'); return; }
+    const data = {nama, harga:Number(harga), stok:Number(stok), ket:$('#pr-ket').value.trim(), foto};
+    if (p) { Object.assign(p, data); simpan(); toast('Produk diperbarui', 'ok'); }
+    else { tambahProduk(data); toast('Produk baru diunggah', 'ok'); }
+    tutupModal(); renderApp();
+  };
+}
+
+/* =========================================================
+   KERANJANG & PESANAN
+   ========================================================= */
+function renderKeranjang() {
+  const wrap = $('#app-main');
+  ME.cart = ME.cart || [];
+  if (!ME.cart.length) {
+    wrap.innerHTML = `<div class="section-head"><h3>Keranjang</h3></div>
+      <div class="empty">Keranjang masih kosong.<br><br><button class="btn sm" id="kk">Lihat Produk</button></div>`;
+    $('#kk').onclick = () => { TAB = 'toko'; renderApp(); };
+    return;
+  }
+  let total = 0;
+  const baris = ME.cart.map(c => {
+    const p = DB.produk.find(x => x.id === c.pid);
+    if (!p) return '';
+    total += p.harga * c.qty;
+    return `<div class="item">
+      <div class="item-row">
+        ${thumbHTML(p.foto, p.nama, 'thumb-sm')}
+        <div class="grow">
+          <strong class="tiny" style="font-size:13.5px">${esc(p.nama)}</strong>
+          <div class="tiny muted">${rupiah(p.harga)} · stok ${p.stok}</div>
+          <div class="row" style="align-items:center;margin-top:7px">
+            <button class="btn ghost xs" data-min="${c.pid}">−</button>
+            <strong class="tiny">${c.qty}</strong>
+            <button class="btn ghost xs" data-plus="${c.pid}">+</button>
+            <button class="btn danger xs" data-del="${c.pid}" style="margin-left:auto">Hapus</button>
+          </div>
+        </div>
+      </div></div>`;
+  }).join('');
+  wrap.innerHTML = `
+    <div class="section-head"><h3>Keranjang</h3><span class="pill blue sp">${ME.cart.length} barang</span></div>
+    <div class="list">${baris}</div>
+    <div class="card" style="padding:14px;margin-top:14px">
+      <div class="row" style="align-items:center"><span class="muted">Total</span>
+        <strong class="sp" style="margin-left:auto;font-size:18px">${rupiah(total)}</strong></div>
+      <div class="tiny muted" style="margin-top:4px">Jumlah pesanan harus sesuai stok yang tersedia.</div>
+      <button class="btn block" id="kr-kirim" style="margin-top:12px">Kirim Pesanan Ke Admin</button>
+    </div>`;
+  $$('[data-plus]').forEach(b => b.onclick = () => {
+    const c = ME.cart.find(x => x.pid === b.dataset.plus), p = DB.produk.find(x => x.id === b.dataset.plus);
+    if (!p) return;
+    if (c.qty + 1 > p.stok) { toast(`Stok hanya ${p.stok}`, 'err'); return; }
+    c.qty++; simpan(); renderApp();
+  });
+  $$('[data-min]').forEach(b => b.onclick = () => {
+    const c = ME.cart.find(x => x.pid === b.dataset.min);
+    c.qty--; if (c.qty < 1) ME.cart = ME.cart.filter(x => x.pid !== c.pid);
+    simpan(); renderApp();
+  });
+  $$('[data-del]').forEach(b => b.onclick = () => { ME.cart = ME.cart.filter(x => x.pid !== b.dataset.del); simpan(); renderApp(); });
+  $('#kr-kirim').onclick = kirimPesanan;
+}
+
+async function kirimPesanan() {
+  ME.cart = ME.cart || [];
+  if (!ME.cart.length) return;
+  for (const c of ME.cart) {
+    const p = DB.produk.find(x => x.id === c.pid);
+    if (!p) return toast('Ada produk yang sudah tidak tersedia.', 'err');
+    if (c.qty > p.stok) return toast(`Stok ${p.nama} hanya ${p.stok}.`, 'err');
+  }
+  const total = ME.cart.reduce((s, c) => s + (DB.produk.find(x => x.id === c.pid).harga * c.qty), 0);
+  const ya = await tanyaYa('Kirim Pesanan Anda Ke admin?',
+    `Total <b>${rupiah(total)}</b> untuk ${ME.cart.length} jenis produk. Pesanan akan dikirim ke admin Naell Shop.`,
+    {ya:'Ya', tidak:'Tidak'});
+  if (!ya) return toast('Pesanan dibatalkan');
+  const items = ME.cart.map(c => {
+    const p = DB.produk.find(x => x.id === c.pid);
+    p.stok -= c.qty;
+    return {pid:p.id, nama:p.nama, harga:p.harga, qty:c.qty, foto:p.foto};
+  });
+  const order = {id:uid(), kode:'NS-' + String(Date.now()).slice(-6), buyer:ME.username, buyerNama:ME.nama,
+    items, total, status:'baru', time:Date.now(), chat:[], payment:null};
+  DB.orders.unshift(order);
+  ME.cart = []; simpan();
+  const admin = DB.users.find(u => u.isAdmin);
+  if (admin && admin.gmail) kirimMail(admin.gmail, {judul:'Pesanan Baru Masuk',
+    isi:`${ME.nama} (@${ME.username}) memesan ${items.length} produk dengan total ${rupiah(total)}. Kode pesanan ${order.kode}.`});
+  aktivitas(`Pesanan baru ${order.kode} dari ${ME.nama} sebesar ${rupiah(total)}.`);
+  notif({judul:'Pesanan Terkirim', isi:`Kode pesanan ${order.kode}. Pesanan Belum Di Baca Oleh Admin harap tunggu.`});
+  toast('Pesanan dikirim ke admin', 'ok');
+  TAB = 'pesanan'; renderApp();
+}
+
+function renderPesanan() {
+  const wrap = $('#app-main');
+  const toko = DB.orders.filter(o => o.sumber !== 'pasar');
+  const pasar = DB.orders.filter(o => o.sumber === 'pasar');
+  if (ME.isAdmin) {
+    wrap.innerHTML = `<div class="section-head"><h3>Pesanan Masuk</h3>
+      <span class="pill amber sp">${toko.filter(o => o.status === 'baru').length} belum dibaca</span></div>
+      <div class="list" id="ps-list"></div>
+      <div class="section-head" style="margin-top:22px"><h3>Pesanan Pasar</h3>
+      <span class="pill blue sp">${pasar.length} transaksi</span></div>
+      <div class="list" id="pp-list"></div>`;
+    $('#ps-list').innerHTML = toko.length ? toko.map(o => kartuOrder(o, true)).join('')
+      : `<div class="empty">Belum ada pesanan masuk.</div>`;
+    toko.forEach(o => pasangAksiOrder(o, true));
+    $('#pp-list').innerHTML = pasar.length ? pasar.map(o => kartuOrderPasar(o)).join('')
+      : `<div class="empty">Belum ada transaksi di Pasar.</div>`;
+    pasar.forEach(o => pasangAksiOrderPasar(o));
+    return;
+  }
+  const milikToko = toko.filter(o => o.buyer === ME.username);
+  const milikPasar = pasar.filter(o => o.buyer === ME.username || o.seller === ME.username);
+  const kosong = !milikToko.length && !milikPasar.length;
+  let html = '';
+  if (milikToko.length || kosong) {
+    html += `<div class="section-head"><h3>Pesanan Saya</h3></div><div class="list" id="ps-list"></div>`;
+  }
+  if (milikPasar.length) {
+    html += `<div class="section-head" style="margin-top:22px"><h3>Pesanan Pasar</h3></div><div class="list" id="pp-list"></div>`;
+  }
+  wrap.innerHTML = html;
+  if (milikToko.length) {
+    $('#ps-list').innerHTML = milikToko.map(o => kartuOrder(o, false)).join('');
+    milikToko.forEach(o => pasangAksiOrder(o, false));
+  } else if (kosong) {
+    $('#ps-list').innerHTML = `<div class="empty">Kamu belum punya pesanan.<br><br><button class="btn sm" id="ps-beli">Mulai Belanja</button></div>`;
+    $('#ps-beli').onclick = () => { TAB = 'toko'; renderApp(); };
+  }
+  if (milikPasar.length) {
+    $('#pp-list').innerHTML = milikPasar.map(o => kartuOrderPasar(o)).join('');
+    milikPasar.forEach(o => pasangAksiOrderPasar(o));
+  }
+}
+
+function kartuOrder(o, sebagaiAdmin) {
+  const belum = o.status === 'baru';
+  const st = sebagaiAdmin
+    ? (belum ? '<span class="pill amber">Belum dibaca</span>' : '<span class="pill blue">Sudah dibaca</span>')
+    : (belum ? '<span class="pill amber">Menunggu admin</span>' : '<span class="pill green">Sudah dibaca admin</span>');
+  const pay = o.payment
+    ? `<div class="info" style="margin-top:10px">
+         <b>Instruksi Pembayaran</b><br>${esc(o.payment.catatan)}<br>
+         <span class="tiny">Status: ${o.payment.status === 'lunas' ? 'Lunas' : o.payment.status === 'verifikasi' ? 'Menunggu konfirmasi admin' : 'Belum dibayar'}</span>
+         ${!sebagaiAdmin && o.payment.status === 'menunggu' ? `<br><button class="btn sm" id="pay-ok-${o.id}" style="margin-top:9px">Saya Sudah Bayar</button>` : ''}
+         ${sebagaiAdmin && o.payment.status === 'verifikasi' ? `<br><button class="btn ok sm" id="pay-lunas-${o.id}" style="margin-top:9px">Tandai Sudah Dibayar / Selesai</button>` : ''}
+       </div>`
+    : '';
+  return `<div class="item" data-order="${o.id}">
+    <div class="row" style="align-items:center">
+      <div><span class="pill">${esc(o.kode)}</span> ${st}</div>
+      <span class="tiny muted" style="margin-left:auto">${waktu(o.time)}</span>
+    </div>
+    <div style="margin-top:9px">
+      ${o.items.map(i => `<div class="row tiny" style="align-items:center;gap:8px;margin-bottom:6px">
+        ${thumbHTML(i.foto, i.nama, 'thumb-sm')}
+        <span class="grow">${esc(i.nama)}</span><span class="muted">${i.qty} × ${rupiah(i.harga)}</span></div>`).join('')}
+    </div>
+    <div class="row" style="align-items:center;margin-top:8px">
+      ${sebagaiAdmin ? `<span class="tiny muted">Pembeli: <b>${esc(o.buyerNama)}</b> (@${esc(o.buyer)})</span>` : ''}
+      <strong class="sp" style="margin-left:auto">${rupiah(o.total)}</strong>
+    </div>
+    ${belum && !sebagaiAdmin ? '<div class="tiny muted" style="margin-top:9px">Pesanan Belum Di Baca Oleh Admin harap tunggu.</div>' : ''}
+    ${pay}
+    <div id="ch-${o.id}" style="margin-top:11px"></div>
+  </div>`;
+}
+
+function pasangAksiOrder(o, sebagaiAdmin) {
+  const slot = $('#ch-' + o.id);
+  if (!slot) return;
+  if (o.status === 'baru' && sebagaiAdmin) {
+    slot.innerHTML = `<button class="btn sm" id="baca-${o.id}">Buka &amp; Baca Pesanan</button>`;
+    $('#baca-' + o.id).onclick = () => {
+      o.status = 'dibaca'; simpan();
+      const buyer = DB.users.find(u => u.username === o.buyer);
+      if (buyer && buyer.gmail) kirimMail(buyer.gmail, {judul:'Pesanan Sudah Dibaca Admin',
+        isi:`Pesanan ${o.kode} sudah dibaca admin Naell Shop. Kamu sekarang bisa chat dan melakukan pembayaran dengan admin.`});
+      notif({judul:'Pesanan Dibaca Admin', isi:`Pesanan ${o.kode} sekarang bisa diobrolkan & dibayar.`});
+      toast('Pesanan dibaca. Chat & pembayaran aktif.', 'ok');
+      renderApp();
+    };
+    return;
+  }
+  if (o.status === 'baru') { slot.innerHTML = ''; return; }
+  /* chat aktif */
+  slot.innerHTML = `
+    <div class="tiny muted" style="margin-bottom:7px">Chat dengan ${sebagaiAdmin ? 'pembeli' : 'admin Naell Shop'}</div>
+    <div class="chat" id="chat-${o.id}"></div>
+    <div class="chat-send">
+      <button class="btn ghost sm" id="cfoto-${o.id}">Foto</button>
+      <input class="input grow" id="ctext-${o.id}" placeholder="Tulis pesan...">
+      <button class="btn sm" id="ckirim-${o.id}">Kirim</button>
+    </div>
+    ${sebagaiAdmin && !o.payment ? `<button class="btn ghost sm" id="cinstr-${o.id}" style="margin-top:9px">Kirim Instruksi Pembayaran</button>` : ''}`;
+  gambarChat(o);
+  const kirim = (teks, foto) => {
+    if (!teks && !foto) return;
+    o.chat.push({dari: sebagaiAdmin ? 'admin' : 'user', teks: teks || '', foto: foto || '', time: Date.now()});
+    simpan(); gambarChat(o);
+    const tujuan = sebagaiAdmin ? (DB.users.find(u => u.username === o.buyer) || {}) : (DB.users.find(u => u.isAdmin) || {});
+    if (tujuan.gmail) kirimMail(tujuan.gmail, {judul:'Pesan Baru di Pesanan ' + o.kode,
+      isi:`${sebagaiAdmin ? 'Admin' : ME.nama}: ${teks || '[foto]'}`});
+  };
+  $('#ckirim-' + o.id).onclick = () => { const i = $('#ctext-' + o.id); kirim(i.value.trim(), ''); i.value = ''; };
+  $('#ctext-' + o.id).onkeydown = e => { if (e.key === 'Enter') $('#ckirim-' + o.id).click(); };
+  $('#cfoto-' + o.id).onclick = async () => { const d = await pilihFile(); if (d) kirim('', d); };
+  const ins = $('#cinstr-' + o.id);
+  if (ins) ins.onclick = async () => {
+    const catatan = await tanyaIsi('Instruksi Pembayaran', 'Tulis instruksi pembayaran untuk pembeli.',
+      {label:'Instruksi (rekening / e-wallet)', ph:'Transfer ke 1234xxxx a/n Naell Shop'});
+    if (catatan === null) return;
+    o.payment = {catatan, jumlah:o.total, status:'menunggu'};
+    const buyer = DB.users.find(u => u.username === o.buyer);
+    if (buyer && buyer.gmail) kirimMail(buyer.gmail, {judul:'Instruksi Pembayaran ' + o.kode, isi:catatan});
+    simpan(); toast('Instruksi pembayaran dikirim', 'ok'); renderApp();
+  };
+  const po = $('#pay-ok-' + o.id);
+  if (po) po.onclick = () => { o.payment.status = 'verifikasi';
+    o.chat.push({dari:'user', teks:'Saya sudah melakukan pembayaran, mohon dicek ya.', foto:'', time:Date.now()});
+    simpan();
+    const admin = DB.users.find(u => u.isAdmin) || {};
+    kirimMail(admin.gmail, {judul:'Konfirmasi Pembayaran ' + o.kode,
+      isi:`${ME.nama} menyatakan sudah membayar pesanan ${o.kode} sebesar ${rupiah(o.total)}. Mohon dicek.`});
+    aktivitas(`${ME.nama} mengonfirmasi pembayaran pesanan ${o.kode}.`);
+    notif({judul:'Konfirmasi Pembayaran', isi:`Pembayaran pesanan ${o.kode} sedang diverifikasi admin.`});
+    toast('Menunggu konfirmasi admin', 'ok'); renderApp(); };
+  const pl = $('#pay-lunas-' + o.id);
+  if (pl) pl.onclick = () => { o.payment.status = 'lunas'; simpan();
+    const buyer = DB.users.find(u => u.username === o.buyer);
+    if (buyer && buyer.gmail) kirimMail(buyer.gmail, {judul:'Pembayaran Diterima', isi:`Pembayaran pesanan ${o.kode} sudah lunas. Terima kasih sudah belanja di Naell Shop!`});
+    toast('Pesanan ditandai lunas', 'ok'); renderApp(); };
+}
+function gambarChat(o) {
+  const box = $('#chat-' + o.id); if (!box) return;
+  box.innerHTML = o.chat.length ? o.chat.map(m => `
+    <div class="bub ${((m.dari === 'admin') === ME.isAdmin) ? 'me' : ''}">
+      ${m.foto ? `<img src="${m.foto}">` : ''}${m.teks ? esc(m.teks) : ''}
+      <span class="t">${m.dari === 'admin' ? 'Admin' : 'Pembeli'} · ${waktu(m.time)}</span></div>`).join('')
+    : '<div class="tiny muted" style="text-align:center;margin:auto">Belum ada pesan. Mulai obrolan.</div>';
+  box.scrollTop = box.scrollHeight;
+}
+
+/* ---------- pesanan hasil Pasar (pembeli ↔ penjual) ---------- */
+function kartuOrderPasar(o) {
+  const sayaPembeli = o.buyer === ME.username;
+  const sayaPenjual = o.seller === ME.username;
+  const stMap = {baru:'<span class="pill amber">Menunggu diproses</span>',
+    proses:'<span class="pill blue">Diproses</span>', selesai:'<span class="pill green">Selesai</span>'};
+  let lawan;
+  if (sayaPembeli) lawan = `Penjual: <b>${esc(o.sellerNama || o.seller)}</b> (@${esc(o.seller)})`;
+  else if (sayaPenjual) lawan = `Pembeli: <b>${esc(o.buyerNama || o.buyer)}</b> (@${esc(o.buyer)})`;
+  else lawan = `Pembeli: <b>${esc(o.buyerNama || o.buyer)}</b> · Penjual: <b>${esc(o.sellerNama || o.seller)}</b>`;
+  return `<div class="item" data-order="${o.id}">
+    <div class="row" style="align-items:center">
+      <div><span class="pill">${esc(o.kode)}</span> ${stMap[o.status] || ''} <span class="pill blue">Pasar</span></div>
+      <span class="tiny muted" style="margin-left:auto">${waktu(o.time)}</span>
+    </div>
+    <div style="margin-top:9px">
+      ${o.items.map(i => `<div class="row tiny" style="align-items:center;gap:8px;margin-bottom:6px">
+        ${thumbHTML(i.foto, i.nama, 'thumb-sm')}
+        <span class="grow">${esc(i.nama)}</span><span class="muted">${i.qty} × ${rupiah(i.harga)}</span></div>`).join('')}
+    </div>
+    <div class="row" style="align-items:center;margin-top:8px">
+      <span class="tiny muted">${lawan}</span>
+      <strong class="sp" style="margin-left:auto">${rupiah(o.total)}</strong>
+    </div>
+    <div id="pch-${o.id}" style="margin-top:11px"></div>
+  </div>`;
+}
+
+function pasangAksiOrderPasar(o) {
+  const slot = $('#pch-' + o.id);
+  if (!slot) return;
+  const sayaPembeli = o.buyer === ME.username;
+  const sayaPenjual = o.seller === ME.username;
+  const bolehChat = sayaPembeli || sayaPenjual;
+  const lawanNama = sayaPembeli ? (o.sellerNama || o.seller) : (o.buyerNama || o.buyer);
+  slot.innerHTML = `
+    <div class="tiny muted" style="margin-bottom:7px">Chat dengan ${esc(lawanNama)}${sayaPenjual ? ' (pembeli)' : sayaPembeli ? ' (penjual)' : ''}</div>
+    <div class="chat" id="pchat-${o.id}"></div>
+    ${bolehChat ? `<div class="chat-send">
+      <button class="btn ghost sm" id="pcfoto-${o.id}">Foto</button>
+      <input class="input grow" id="pctext-${o.id}" placeholder="Tulis pesan...">
+      <button class="btn sm" id="pckirim-${o.id}">Kirim</button>
+    </div>` : `<div class="tiny muted">Hanya pembeli &amp; penjual yang bisa chat di sini.</div>`}
+    ${sayaPenjual && o.status === 'baru' ? `<button class="btn sm" id="psproses-${o.id}" style="margin-top:9px">Tandai Sedang Diproses</button>` : ''}
+    ${sayaPembeli && o.status !== 'selesai' ? `<button class="btn ok sm" id="psselesai-${o.id}" style="margin-top:9px">Tandai Sudah Diterima / Selesai</button>` : ''}`;
+  gambarChatPasar(o);
+  if (!bolehChat) return;
+  const kirim = (teks, foto) => {
+    if (!teks && !foto) return;
+    o.chat.push({dari: ME.username, dariNama: ME.nama, teks: teks || '', foto: foto || '', time: Date.now()});
+    simpan(); gambarChatPasar(o);
+    const lawan = DB.users.find(u => u.username === (sayaPembeli ? o.seller : o.buyer));
+    if (lawan && lawan.gmail) kirimMail(lawan.gmail, {judul:'Pesan Baru di Pesanan Pasar ' + o.kode,
+      isi:`${ME.nama}: ${teks || '[foto]'}`});
+  };
+  const kb = $('#pckirim-' + o.id);
+  if (kb) kb.onclick = () => { const i = $('#pctext-' + o.id); kirim(i.value.trim(), ''); i.value = ''; };
+  const ti = $('#pctext-' + o.id);
+  if (ti) ti.onkeydown = e => { if (e.key === 'Enter') $('#pckirim-' + o.id).click(); };
+  const fb = $('#pcfoto-' + o.id);
+  if (fb) fb.onclick = async () => { const data = await pilihFile(); if (data) kirim('', data); };
+  const sp = $('#psselesai-' + o.id);
+  if (sp) sp.onclick = () => { o.status = 'selesai'; simpan();
+    notif({judul:'Pesanan Pasar Selesai', isi:`Pesanan ${o.kode} ditandai selesai.`});
+    toast('Pesanan ditandai selesai', 'ok'); renderApp(); };
+  const pp = $('#psproses-' + o.id);
+  if (pp) pp.onclick = () => { o.status = 'proses'; simpan(); toast('Status diperbarui', 'ok'); renderApp(); };
+}
+
+function gambarChatPasar(o) {
+  const box = $('#pchat-' + o.id); if (!box) return;
+  box.innerHTML = o.chat.length ? o.chat.map(m => `
+    <div class="bub ${m.dari === ME.username ? 'me' : ''}">
+      ${m.foto ? `<img src="${m.foto}">` : ''}${m.teks ? esc(m.teks) : ''}
+      <span class="t">${esc(m.dariNama || m.dari)} · ${waktu(m.time)}</span></div>`).join('')
+    : '<div class="tiny muted" style="text-align:center;margin:auto">Belum ada pesan. Mulai obrolan.</div>';
+  box.scrollTop = box.scrollHeight;
+}
+
+/* =========================================================
+   PASAR JUAL BELI
+   ========================================================= */
+function renderPasar() {
+  const wrap = $('#app-main');
+  if (!ME.joinedMarket) {
+    wrap.innerHTML = `<div class="section-head"><h3>Pasar Jual Beli</h3></div>
+      <div class="card" style="padding:20px;text-align:center">
+        <div style="font-size:15px;font-weight:700;margin-bottom:6px">Hai ${esc(ME.nama)}</div>
+        <p class="muted tiny" style="margin:0 0 14px">Anda ingin Gabung ke Pasar Untuk Jual Beli?</p>
+        <div class="row"><button class="btn grow" id="ps-ya">Ya</button>
+          <button class="btn ghost grow" id="ps-tidak">Tidak</button></div>
+      </div>`;
+    $('#ps-tidak').onclick = () => toast('Kamu tetap di Naell Shop');
+    $('#ps-ya').onclick = async () => {
+      const ya = await tanyaYa('Gabung Pasar Jual Beli?',
+        'Dengan bergabung kamu bisa melihat barang dari penjual lain, mencari penjual/barang, dan mengunggah produkmu sendiri.',
+        {ya:'Ya', tidak:'Tidak'});
+      if (!ya) return;
+      ME.joinedMarket = true; simpan();
+      aktivitas(`${ME.nama} bergabung ke Pasar Jual Beli.`);
+      if (ME.gmail) kirimMail(ME.gmail, {judul:'Selamat Datang di Pasar Naell Shop',
+        isi:'Kamu resmi bergabung ke Pasar Jual Beli Naell Shop. Silakan unggah produkmu dan mulai berjualan.'});
+      notif({judul:'Selamat! Kamu Masuk Pasar', isi:'Sekarang kamu bisa jual beli dengan pengguna lain.'});
+      renderApp();
+    };
+    return;
+  }
+  wrap.innerHTML = `
+    <div class="toolbar" style="margin-bottom:14px">
+      <input id="pa-cari" class="input" style="max-width:320px;flex:1;min-width:170px" placeholder="Cari nama penjual atau barang...">
+      <button class="btn sm" id="pa-jual">+ Jual Produk</button>
+    </div>
+    <div class="section-head"><h3>Barang di Pasar</h3>
+      <span class="pill blue sp">${DB.pasar.length} barang</span></div>
+    <div id="pa-grid"></div>`;
+  const gambar = (q = '') => {
+    const q2 = q.toLowerCase();
+    const list = DB.pasar.filter(p => !q2 || p.nama.toLowerCase().includes(q2) ||
+      (p.seller || '').toLowerCase().includes(q2) || (p.ket || '').toLowerCase().includes(q2));
+    $('#pa-grid').innerHTML = list.length ? `<div class="grid">${list.map(p => {
+      const penjual = DB.users.find(u => u.username === p.seller);
+      return `<div class="prod">${thumbHTML(p.foto, p.nama)}
+        <div class="prod-body">
+          <div class="prod-name">${esc(p.nama)}</div>
+          <div class="prod-price">${rupiah(p.harga)}</div>
+          <div class="prod-desc">${esc(p.ket)}</div>
+          <div class="tiny muted">Penjual: <b>${esc(penjual ? penjual.nama : p.seller)}</b></div>
+          <div class="prod-foot">
+            ${p.seller === ME.username
+              ? `<button class="btn danger xs" data-hapus-pasar="${p.id}">Hapus</button>`
+              : `<button class="btn sm" data-chat="${p.id}">Chat Penjual</button>
+                 <button class="btn ghost xs" data-keranjang-pasar="${p.id}">Beli</button>
+                 <button class="btn ghost xs" data-lapor-pasar="${p.id}">Lapor</button>`}
+          </div>
+        </div></div>`;
+    }).join('')}</div>` : `<div class="empty">${DB.pasar.length ? 'Tidak ada barang yang cocok.' : 'Belum ada barang di Pasar.<br>Jadilah yang pertama berjualan!'}</div>`;
+    $$('[data-hapus-pasar]').forEach(b => b.onclick = () => {
+      DB.pasar = DB.pasar.filter(x => x.id !== b.dataset.hapusPasar); simpan(); toast('Produk dihapus', 'ok'); renderApp(); });
+    $$('[data-chat]').forEach(b => b.onclick = () => chatPasar(DB.pasar.find(x => x.id === b.dataset.chat)));
+    $$('[data-keranjang-pasar]').forEach(b => b.onclick = () => beliPasar(DB.pasar.find(x => x.id === b.dataset.keranjangPasar)));
+    $$('[data-lapor-pasar]').forEach(b => b.onclick = () => laporkanProduk(DB.pasar.find(x => x.id === b.dataset.laporPasar), 'pasar'));
+  };
+  gambar();
+  $('#pa-cari').oninput = e => gambar(e.target.value);
+  $('#pa-jual').onclick = async () => {
+    const nama = await tanyaIsi('Jual Produk di Pasar', 'Masukkan nama barang yang mau kamu jual.', {label:'Nama Barang', ph:'contoh: Akun Genshin AR60'});
+    if (!nama) return;
+    const harga = await tanyaIsi('Harga Barang', 'Masukkan harga jual barangmu.', {label:'Harga (Rp)', ph:'100000'});
+    if (harga === null) return;
+    const ket = await tanyaIsi('Keterangan Barang', 'Jelaskan kondisi barangmu.', {label:'Keterangan', ph:'Deskripsi singkat'});
+    if (ket === null) return;
+    const foto = await pilihFile();
+    DB.pasar.unshift({id:uid(), nama, harga:Number(harga)||0, ket, foto: foto || '',
+      seller: ME.username, time: Date.now()});
+    simpan(); toast('Produk kamu tayang di Pasar', 'ok');
+    DB.users.filter(u => u.gmail && u.username !== ME.username).forEach(u => kirimMail(u.gmail,
+      {judul:'Barang Baru di Pasar', isi:`${ME.nama} menjual ${nama} seharga ${rupiah(harga)}.`}));
+    renderApp();
+  };
+}
+
+/* Beli barang di Pasar → jadi Pesanan + chat dengan penjual */
+async function beliPasar(p) {
+  if (!p) return;
+  if (p.seller === ME.username) return toast('Ini barangmu sendiri.', 'err');
+  const penjual = DB.users.find(u => u.username === p.seller) || {};
+  const ya = await tanyaYa('Beli Barang di Pasar?',
+    `${esc(p.nama)} seharga <b>${rupiah(p.harga)}</b> dari ${esc(penjual.nama || p.seller)}.<br>Pesanan akan masuk ke tab Pesanan dan kamu bisa chat dengan penjual.`,
+    {ya:'Ya, Beli', tidak:'Tidak'});
+  if (!ya) return toast('Pembelian dibatalkan');
+  const order = {id:uid(), kode:'NP-' + String(Date.now()).slice(-6), sumber:'pasar',
+    buyer:ME.username, buyerNama:ME.nama,
+    seller:p.seller, sellerNama:penjual.nama || p.seller,
+    items:[{pid:p.id, nama:p.nama, harga:p.harga, qty:1, foto:p.foto}],
+    total:p.harga, status:'baru', time:Date.now(), chat:[], payment:null};
+  order.chat.push({dari:ME.username, dariNama:ME.nama,
+    teks:`Halo, saya ingin membeli ${p.nama}.`, foto:'', time:Date.now()});
+  DB.orders.unshift(order); simpan();
+  if (penjual.gmail) kirimMail(penjual.gmail, {judul:'Pesanan Pasar Baru ' + order.kode,
+    isi:`${ME.nama} ingin membeli ${p.nama} (${rupiah(p.harga)}). Buka tab Pesanan untuk chat & memproses.`});
+  aktivitas(`${ME.nama} membeli ${p.nama} dari ${penjual.nama || p.seller} di Pasar.`);
+  notif({judul:'Pesanan Pasar Terkirim', isi:`Kode ${order.kode}. Buka tab Pesanan untuk chat dengan penjual.`});
+  toast('Pesanan dibuat. Cek tab Pesanan.', 'ok');
+  TAB = 'pesanan'; renderApp();
+}
+
+function chatPasar(p) {
+  const penjual = DB.users.find(u => u.username === p.seller) || {};
+  const key = [ME.username, p.seller].sort().join('__') + '__' + p.id;
+  DB.pasarChat = DB.pasarChat || {};
+  const ruang = DB.pasarChat[key] = DB.pasarChat[key] || [];
+  const render = () => {
+    const box = $('#pp-chat'); if (!box) return;
+    box.innerHTML = ruang.length ? ruang.map(m => `<div class="bub ${m.dari === ME.username ? 'me' : ''}">
+      ${m.foto ? `<img src="${m.foto}">` : ''}${esc(m.teks)}
+      <span class="t">${esc(m.dari)} · ${waktu(m.time)}</span></div>`).join('')
+      : '<div class="tiny muted" style="text-align:center;margin:auto">Tanya langsung ke penjual.</div>';
+    box.scrollTop = box.scrollHeight;
+  };
+  bukaModal(`
+    <div class="sheet-head"><h3>${esc(p.nama)}</h3>
+      <p>Penjual: ${esc(penjual.nama || p.seller)} · ${rupiah(p.harga)}</p></div>
+    <div class="sheet-body">
+      <div class="chat" id="pp-chat"></div>
+      <div class="chat-send">
+        <button class="btn ghost sm" id="pp-foto">Foto</button>
+        <input class="input grow" id="pp-text" placeholder="Tulis pesan...">
+        <button class="btn sm" id="pp-kirim">Kirim</button>
+      </div>
+    </div>
+    <div class="sheet-foot"><button class="btn ghost" id="pp-tutup">Tutup</button></div>`);
+  render();
+  const kirim = (teks, foto) => {
+    if (!teks && !foto) return;
+    ruang.push({dari: ME.username, teks: teks || '', foto: foto || '', time: Date.now()}); simpan(); render();
+    if (penjual.gmail) kirimMail(penjual.gmail, {judul:'Pesan dari Pasar: ' + p.nama, isi:`${ME.nama}: ${teks || '[foto]'}`});
+  };
+  $('#pp-kirim').onclick = () => { const i = $('#pp-text'); kirim(i.value.trim(), ''); i.value = ''; };
+  $('#pp-text').onkeydown = e => { if (e.key === 'Enter') $('#pp-kirim').click(); };
+  $('#pp-foto').onclick = async () => { const d = await pilihFile(); if (d) kirim('', d); };
+  $('#pp-tutup').onclick = tutupModal;
+}
+
+/* =========================================================
+   TESTIMONI NAEL
+   ========================================================= */
+function renderTestimoni() {
+  const wrap = $('#app-main');
+  const list = DB.testimoni || [];
+  wrap.innerHTML = `
+    <div class="toolbar" style="margin-bottom:14px">
+      <span class="grow"></span>
+      ${ME.isAdmin ? '<button class="btn sm" id="tm-upload">+ Upload Testimoni</button>' : ''}
+    </div>
+    <div class="section-head"><h3>Testimoni Nael</h3>
+      <span class="pill blue sp">${list.length} testimoni</span></div>
+    <p class="sub" style="margin:-4px 0 12px">Testimoni jual beli di Naell Shop. Hanya admin yang dapat mengunggah, agar testimoni asli.</p>
+    <div id="tm-list"></div>`;
+  $('#tm-list').innerHTML = list.length ? `<div class="list">${list.map(t => `
+    <div class="item">
+      <div class="row" style="gap:12px;align-items:flex-start;flex-wrap:nowrap">
+        ${t.foto ? `<div class="thumb-sm" style="width:64px;height:64px"><img src="${t.foto}" alt="testimoni"></div>` : ''}
+        <div class="grow">
+          <div style="font-size:14px;line-height:1.55">${esc(t.teks || '')}</div>
+          <div class="tiny muted" style="margin-top:6px">${esc(t.olehNama || 'Nael')} · ${waktu(t.time)}</div>
+        </div>
+      </div>
+    </div>`).join('')}</div>`
+    : `<div class="empty">Belum ada testimoni.<br>Testimoni akan diunggah manual oleh admin agar asli.</div>`;
+  if (ME.isAdmin) $('#tm-upload').onclick = formTestimoni;
+}
+
+function formTestimoni() {
+  bukaModal(`
+    <div class="sheet-head"><h3>Upload Testimoni</h3>
+      <p>Bagikan bukti jual beli asli dari pembeli / penjual Naell Shop.</p></div>
+    <div class="sheet-body">
+      <div class="field"><label>Foto Testimoni</label>
+        <div class="row" style="align-items:center">
+          <div class="thumb-sm" id="tm-thumb">N</div>
+          <button class="btn ghost sm" id="tm-foto">Pilih dari Galeri</button>
+          <button class="btn ghost sm" id="tm-foto-x">Hapus Foto</button>
+        </div></div>
+      <div class="field"><label>Isi Testimoni</label>
+        <textarea class="input" id="tm-teks" placeholder="contoh: Proses cepat, barang sesuai, admin terpercaya!"></textarea></div>
+      <div id="tm-err" class="err"></div>
+    </div>
+    <div class="sheet-foot"><button class="btn" id="tm-save">Posting Testimoni</button>
+      <button class="btn ghost" id="tm-no">Batal</button></div>`);
+  let foto = '';
+  const lu = () => { const el = $('#tm-thumb'); el.innerHTML = foto ? `<img src="${foto}">` : 'N'; };
+  $('#tm-foto').onclick = async () => { const f = await pilihFile(); if (f) { foto = f; lu(); } };
+  $('#tm-foto-x').onclick = () => { foto = ''; lu(); };
+  $('#tm-no').onclick = tutupModal;
+  $('#tm-save').onclick = () => {
+    const teks = $('#tm-teks').value.trim();
+    if (!teks && !foto) { tampilErr('#tm-err', 'Isi testimoni atau foto wajib diisi.'); return; }
+    DB.testimoni.unshift({id:uid(), teks, foto, oleh:ME.username, olehNama:ME.nama, time:Date.now()});
+    simpan(); tutupModal();
+    aktivitas(`${ME.nama} menambahkan testimoni.`);
+    notif({judul:'Testimoni Terpasang', isi:'Testimoni baru sudah tayang di Naell Shop.'});
+    toast('Testimoni berhasil diposting', 'ok'); renderApp();
+  };
+}
+
+/* =========================================================
+   MC — ORANG KETIGA PEMBAYARAN (REKBER)
+   ========================================================= */
+function MCkartu(g) {
+  const bolehChat = [g.pembeli, g.seller, g.admin].includes(ME.username);
+  return `<div class="item">
+    <div class="row" style="align-items:center">
+      <div><span class="pill blue">MC</span>
+        ${g.status === 'selesai' ? '<span class="pill green">Selesai</span>' : '<span class="pill amber">Berjalan</span>'}</div>
+      <span class="tiny muted" style="margin-left:auto">${waktu(g.time)}</span>
+    </div>
+    <div style="margin-top:8px;font-size:15px;font-weight:750">${esc(g.nama)}</div>
+    <div class="tiny muted" style="margin-top:4px">Pembeli: <b>${esc(g.pembeliNama || g.pembeli)}</b> · Penjual: <b>${esc(g.sellerNama || g.seller)}</b></div>
+    <div class="tiny muted" style="margin-top:2px">MC / Admin: <b>${esc(g.adminNama || g.admin)}</b></div>
+    ${g.status === 'selesai' ? `<div class="tiny" style="margin-top:6px;color:#059669">✔ Sudah di-cap Selesai — dana diteruskan ke penjual.</div>` : ''}
+    <div class="chat" id="mcc-${g.id}" style="height:200px;margin-top:10px"></div>
+    ${bolehChat ? `<div class="chat-send">
+      <button class="btn ghost sm" id="mcf-${g.id}">Foto</button>
+      <input class="input grow" id="mct-${g.id}" placeholder="Tulis pesan / bukti transfer...">
+      <button class="btn sm" id="mck-${g.id}">Kirim</button>
+    </div>` : '<div class="tiny muted" style="margin-top:8px">Hanya pembeli, penjual &amp; admin yang bisa chat di grup ini.</div>'}
+    ${ME.isAdmin ? `<div class="row" style="margin-top:10px">
+      ${g.status !== 'selesai' ? `<button class="btn ok sm" id="mccap-${g.id}">Cap Selesai</button>` : ''}
+      <button class="btn danger sm" id="mchapus-${g.id}">Hapus Grup</button>
+    </div>` : ''}
+  </div>`;
+}
+function MCaksi(g) {
+  g.chat = g.chat || [];
+  MCgambar(g);
+  const bolehChat = [g.pembeli, g.seller, g.admin].includes(ME.username);
+  if (bolehChat) {
+    const kirim = (teks, foto) => {
+      if (!teks && !foto) return;
+      g.chat.push({dari:ME.username, dariNama:ME.nama, teks:teks || '', foto:foto || '', time:Date.now()});
+      simpan(); MCgambar(g);
+      [g.pembeli, g.seller, g.admin].filter(u => u !== ME.username).forEach(u => {
+        const t = DB.users.find(x => x.username === u);
+        if (t && t.gmail) kirimMail(t.gmail, {judul:'Pesan Baru di Grup MC ' + g.nama, isi:`${ME.nama}: ${teks || '[foto]'}`});
+      });
+    };
+    $('#mck-' + g.id).onclick = () => { const i = $('#mct-' + g.id); kirim(i.value.trim(), ''); i.value = ''; };
+    $('#mct-' + g.id).onkeydown = e => { if (e.key === 'Enter') $('#mck-' + g.id).click(); };
+    $('#mcf-' + g.id).onclick = async () => { const f = await pilihFile(); if (f) kirim('', f); };
+  }
+  const cap = $('#mccap-' + g.id);
+  if (cap) cap.onclick = async () => {
+    const ya = await tanyaYa('Cap Selesai', `Tandai grup MC "${esc(g.nama)}" sebagai SELESAI? Dana dianggap sudah diteruskan ke penjual.`, {ya:'Cap Selesai', gayaYa:'ok sm'});
+    if (!ya) return;
+    g.status = 'selesai'; g.capTime = Date.now();
+    g.chat.push({dari:'admin', dariNama:'Admin', teks:'✔ Transaksi SELESAI. Dana sudah diteruskan ke penjual. Terima kasih berjual beli di Naell Shop.', foto:'', time:Date.now()});
+    simpan();
+    [g.pembeli, g.seller].forEach(u => { const t = DB.users.find(x => x.username === u);
+      if (t && t.gmail) kirimMail(t.gmail, {judul:'Grup MC Selesai — ' + g.nama, isi:'Transaksi melalui MC sudah selesai dan ditandai CAP SELESAI oleh admin Naell Shop.'}); });
+    notif({judul:'MC Selesai', isi:`Grup "${g.nama}" sudah di-cap selesai.`});
+    toast('Grup MC ditandai selesai', 'ok'); renderApp();
+  };
+  const hap = $('#mchapus-' + g.id);
+  if (hap) hap.onclick = async () => {
+    const ya = await tanyaYa('Hapus Grup MC', `Hapus grup "${esc(g.nama)}"? Tindakan ini tidak bisa dibatalkan.`, {ya:'Hapus', gayaYa:'danger sm'});
+    if (!ya) return;
+    DB.mc = DB.mc.filter(x => x.id !== g.id); simpan();
+    toast('Grup MC dihapus', 'ok'); renderApp();
+  };
+}
+function MCgambar(g) {
+  const box = $('#mcc-' + g.id); if (!box) return;
+  box.innerHTML = g.chat.length ? g.chat.map(m => `
+    <div class="bub ${m.dari === ME.username ? 'me' : ''}">
+      ${m.foto ? `<img src="${m.foto}">` : ''}${m.teks ? esc(m.teks) : ''}
+      <span class="t">${esc(m.dariNama || m.dari)} · ${waktu(m.time)}</span></div>`).join('')
+    : '<div class="tiny muted" style="text-align:center;margin:auto">Belum ada pesan. Mulai koordinasi pembayaran.</div>';
+  box.scrollTop = box.scrollHeight;
+}
+function renderMC() {
+  const wrap = $('#app-main');
+  const list = DB.mc || [];
+  wrap.innerHTML = `
+    <div class="toolbar" style="margin-bottom:14px">
+      <span class="grow"></span>
+      <button class="btn sm" id="mc-buat">+ Grup MC</button>
+    </div>
+    <div class="section-head"><h3>MC — Orang Ketiga Pembayaran</h3>
+      <span class="pill blue sp">${list.length} grup</span></div>
+    <p class="sub" style="margin:-4px 0 12px">MC adalah orang ketiga yang menengahi pembayaran supaya transaksi jual beli aman. Buat grup, masukkan penjual &amp; admin, lalu admin akan meng-cap Selesai dan bisa menghapus grup.</p>
+    <div id="mc-list"></div>`;
+  $('#mc-list').innerHTML = list.length ? `<div class="list">${list.map(MCkartu).join('')}</div>`
+    : `<div class="empty">Belum ada grup MC.<br>Buat grup untuk transaksi aman dengan perantara.</div>`;
+  list.forEach(MCaksi);
+  $('#mc-buat').onclick = formMC;
+}
+function formMC() {
+  const kandidat = DB.users.filter(u => u.username !== ME.username);
+  const admins = DB.users.filter(u => u.isAdmin);
+  bukaModal(`
+    <div class="sheet-head"><h3>Buat Grup MC</h3>
+      <p>MC adalah orang ketiga yang menengahi pembayaran agar transaksi aman.</p></div>
+    <div class="sheet-body">
+      <div class="field"><label>Nama Grup</label>
+        <input class="input" id="mc-nama" placeholder="contoh: 183k ex"></div>
+      <div class="field"><label>Penjual</label>
+        <select class="input" id="mc-seller">
+          <option value="">— pilih penjual —</option>
+          ${kandidat.map(u => `<option value="${esc(u.username)}">${esc(u.nama)} (@${esc(u.username)})</option>`).join('')}
+        </select></div>
+      <div class="field"><label>Admin (MC)</label>
+        <select class="input" id="mc-admin">
+          ${admins.map(u => `<option value="${esc(u.username)}">${esc(u.nama)} (@${esc(u.username)})</option>`).join('')}
+        </select></div>
+      <div id="mc-err" class="err"></div>
+    </div>
+    <div class="sheet-foot"><button class="btn" id="mc-save">Buat Grup</button>
+      <button class="btn ghost" id="mc-no">Batal</button></div>`);
+  $('#mc-no').onclick = tutupModal;
+  $('#mc-save').onclick = () => {
+    const nama = $('#mc-nama').value.trim();
+    const seller = $('#mc-seller').value;
+    const admin = $('#mc-admin').value;
+    if (!nama) { tampilErr('#mc-err', 'Nama grup wajib diisi.'); return; }
+    if (!seller) { tampilErr('#mc-err', 'Pilih penjual terlebih dahulu.'); return; }
+    if (!admin) { tampilErr('#mc-err', 'Pilih admin MC.'); return; }
+    const sU = DB.users.find(u => u.username === seller) || {};
+    const aU = DB.users.find(u => u.username === admin) || {};
+    const g = {id:uid(), nama, pembeli:ME.username, pembeliNama:ME.nama,
+      seller, sellerNama:sU.nama, admin, adminNama:aU.nama,
+      status:'aktif', capTime:null, time:Date.now(),
+      chat:[{dari:'admin', dariNama:'Admin',
+        teks:`Grup MC "${nama}" dibuat. Pembeli: ${ME.nama}, Penjual: ${sU.nama}. Silakan transfer ke MC; dana diteruskan setelah transaksi selesai.`,
+        foto:'', time:Date.now()}]};
+    DB.mc.unshift(g); simpan();
+    [seller, admin].forEach(u => { const t = DB.users.find(x => x.username === u);
+      if (t && t.gmail && t.username !== ME.username) kirimMail(t.gmail, {judul:'Grup MC Baru: ' + nama,
+        isi:`${ME.nama} membuat grup MC "${nama}" dengan penjual ${sU.nama}. Buka menu MC untuk berkoordinasi.`}); });
+    aktivitas(`${ME.nama} membuat grup MC "${nama}".`);
+    notif({judul:'Grup MC Dibuat', isi:`Grup "${nama}" siap. Admin akan menengahi pembayaran.`});
+    toast('Grup MC dibuat', 'ok'); tutupModal(); renderApp();
+  };
+}
+
+/* =========================================================
+   GMAIL NAELL SHOP
+   ========================================================= */
+let subGmail = 'inbox';
+function renderGmail() {
+  const wrap = $('#app-main');
+  if (!ME.gmail) {
+    wrap.innerHTML = `<div class="section-head"><h3>Gmail Naell Shop</h3></div>
+      <div class="card" style="padding:18px">
+        <h3 style="margin:0 0 4px;font-size:17px">Buat Gmail Anda Sekarang!!</h3>
+        <p class="muted tiny" style="margin:0 0 14px">Gmail ini dipakai untuk notifikasi, kode verifikasi, dan pemulihan akun.
+          Setiap alamat otomatis berakhiran <b>@gmail.com.nael</b>.</p>
+        <div class="field"><label>Nama Email</label><input id="gm-nama" class="input" value="${esc(ME.nama)}"></div>
+        <div class="field"><label>Nama Pendek Gmail</label><input id="gm-pendek" class="input" placeholder="contoh: naelshop"></div>
+        <div id="gm-err" class="err"></div>
+        <button class="btn block" id="gm-buat">Buat Gmail</button>
+      </div>`;
+    $('#gm-buat').onclick = () => {
+      sembunyiErr('#gm-err');
+      const nama = $('#gm-nama').value.trim(), pendek = $('#gm-pendek').value.trim().toLowerCase().replace(/[^a-z0-9._-]/g, '');
+      if (!nama || !pendek) return tampilErr('#gm-err', 'Nama Email dan Nama Pendek Gmail wajib diisi.');
+      const alamat = pendek + '@gmail.com.nael';
+      if (cariGmail(alamat)) return tampilErr('#gm-err', 'Nama pendek sudah dipakai. Coba yang lain.');
+      ME.gmail = alamat; ME.namaEmail = nama; simpan();
+      kirimMail(alamat, {judul:'Selamat Datang di Gmail Naell Shop',
+        isi:`Hai ${nama}, Gmail kamu (${alamat}) sudah aktif. Semua notifikasi Naell Shop akan masuk ke sini.`});
+      kirimMail('naeldevshop@gmail.com.nael', {judul:'Gmail Pengguna Baru Dibuat',
+        isi:`${ME.nama} (@${ME.username}) membuat Gmail baru: ${alamat}.`});
+      aktivitas(`${ME.nama} membuat Gmail Naell Shop: ${alamat}.`);
+      notif({judul:'Gmail Berhasil Dibuat', isi:alamat});
+      toast('Gmail berhasil dibuat', 'ok'); renderApp();
+    };
+    return;
+  }
+  const mails = DB.mails[ME.gmail.toLowerCase()] || [];
+  wrap.innerHTML = `
+    <div class="card" style="padding:14px;margin-bottom:12px">
+      <div class="row" style="align-items:center">
+        <div class="avatar sm">${esc(ME.nama.charAt(0).toUpperCase())}</div>
+        <div class="grow"><strong class="tiny">${esc(ME.namaEmail || ME.nama)}</strong>
+          <div class="tiny muted mono">${esc(ME.gmail)}</div></div>
+        <span class="pill ${mails.filter(m => !m.dibaca).length ? 'red' : ''}">${mails.filter(m => !m.dibaca).length} baru</span>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn sm ${subGmail === 'inbox' ? '' : 'ghost'}" id="gb-inbox">Kotak Masuk</button>
+        <button class="btn sm ${subGmail === 'auth' ? '' : 'ghost'}" id="gb-auth">Autentikator</button>
+      </div>
+    </div>
+    <div id="gm-body"></div>`;
+  $('#gb-inbox').onclick = () => { subGmail = 'inbox'; renderApp(); };
+  $('#gb-auth').onclick = () => { subGmail = 'auth'; renderApp(); };
+  if (subGmail === 'inbox') {
+    $('#gm-body').innerHTML = `<div class="section-head" style="margin-top:0"><h3>Kotak Masuk</h3>
+      <button class="btn ghost xs sp" id="gm-baca">Tandai semua dibaca</button></div>
+      <div class="list">${mails.length ? mails.map(m => `
+        <div class="mail-item ${m.dibaca ? '' : 'unread'}">
+          <div class="avatar sm" style="background:#eef2ff;color:#4c5bd4;font-weight:800">N</div>
+          <div class="grow"><h4>${esc(m.judul)}</h4>
+            <div class="tiny muted">${esc(m.dari)} · ${waktu(m.time)}</div>
+            <p style="margin-top:5px">${esc(m.isi)}</p>
+            ${m.kode ? `<div class="mono" style="margin-top:7px;font-size:20px;letter-spacing:4px;font-weight:800;color:#1d4ed8">${esc(m.kode)}</div>` : ''}
+          </div></div>`).join('') : '<div class="empty">Belum ada email masuk.</div>'}</div>`;
+    $('#gm-baca').onclick = () => { mails.forEach(m => m.dibaca = true); simpan(); renderApp(); };
+    setTimeout(() => { if (mails.some(m => !m.dibaca)) { mails.forEach(m => m.dibaca = true); simpan(); } }, 4000);
+  } else {
+    ME.auths = ME.auths || [];
+    $('#gm-body').innerHTML = `
+      <div class="section-head" style="margin-top:0"><h3>Autentikator</h3>
+        <button class="btn sm sp" id="au-plus">+ Tambah</button></div>
+      <div class="tiny muted" style="margin-bottom:10px">Tekan <b>+</b>, isi Nama dan kode penaut, lalu kode 6 angka akan berubah setiap 30 detik.</div>
+      <div class="list" id="au-list"></div>`;
+    const gambar = () => {
+      $('#au-list').innerHTML = ME.auths.length ? ME.auths.map((a, i) => `
+        <div class="item" style="text-align:center">
+          <strong class="tiny">${esc(a.nama)}</strong>
+          <div class="authen-code" data-au-code="${i}">${kodeAutentikator(a.secret)}</div>
+          <div class="tiny muted" data-au-sisa="${i}">Berlaku ${sisaAutentikator()} detik lagi</div>
+          <div class="tiny muted mono" style="margin-top:5px">${esc(a.secret)}</div>
+          <button class="btn danger xs" data-au-hapus="${i}" style="margin-top:9px">Hapus</button>
+        </div>`).join('') : '<div class="empty">Belum ada akun autentikator. Tekan + Tambah.</div>';
+      $$('[data-au-hapus]').forEach(b => b.onclick = () => {
+        ME.auths.splice(Number(b.dataset.auHapus), 1); simpan(); gambar(); });
+    };
+    gambar();
+    clearInterval(window.__auTick);
+    window.__auTick = setInterval(() => {
+      if (!ME || !ME.auths || TAB !== 'gmail' || subGmail !== 'auth') { clearInterval(window.__auTick); return; }
+      ME.auths.forEach((a, i) => {
+        const c = $(`[data-au-code="${i}"]`); if (c) c.textContent = kodeAutentikator(a.secret);
+        const s = $(`[data-au-sisa="${i}"]`); if (s) s.textContent = 'Berlaku ' + sisaAutentikator() + ' detik lagi';
+      });
+    }, 1000);
+    $('#au-plus').onclick = async () => {
+      const nama = await tanyaIsi('Tambah Autentikator', 'Masukkan nama akun autentikator (bebas).', {label:'Nama', ph:'Naell Shop'});
+      if (!nama) return;
+      const kode = await tanyaIsi('Kode Penaut', 'Salin kode penaut dari pengaturan Verifikasi 2 Langkah, atau masukkan manual.',
+        {label:'Kode Penaut', ph:'naelshopauth12345678abcd'});
+      if (kode === null) return;
+      const secret = (kode || '').trim() || buatAuthKey();
+      if (!secret.startsWith('naelshopauth')) toast('Format kode penaut berbeda, tetap ditambahkan.', 'err');
+      ME.auths.push({nama, secret}); simpan(); gambar();
+      toast('Autentikator ditambahkan', 'ok');
+    };
+  }
+}
+
+/* =========================================================
+   PENGATURAN
+   ========================================================= */
+function renderSetelan() {
+  const wrap = $('#app-main');
+  const sec = ME.security || (ME.security = {passcode:'', passkey:null, twofa:{on:false, method:'', secret:''}});
+  const pk = sec.passkey && sec.passkey.tipe ? TIPE_PASSKEY[sec.passkey.tipe] : 'Belum aktif';
+  const tfa = sec.twofa && sec.twofa.on ? (sec.twofa.method === 'mail' ? 'Kode dari Mail' : 'Authenticator') : 'Nonaktif';
+  const DEV = ME.role === 'Dev/Naell';
+  const daftarAdmin = DB.users.filter(u => u.isAdmin);
+  wrap.innerHTML = `
+    <div class="card" style="padding:16px">
+      <div class="row" style="align-items:center;gap:14px">
+        <div class="avatar lg" id="st-av">${ME.avatar ? `<img src="${ME.avatar}">` : esc((ME.nama || ME.username).charAt(0).toUpperCase())}</div>
+        <div class="grow"><strong style="font-size:16px">${esc(ME.nama)}</strong>
+          <div class="tiny muted">@${esc(ME.username)}${ME.isAdmin ? ' · Admin/Developer' : ''}</div>
+          <div class="tiny muted mono">${esc(ME.gmail || 'Gmail belum dibuat')}</div></div>
+      </div>
+    </div>
+
+    <div class="section-head"><h3>Profil</h3></div>
+    <div class="card" style="padding:4px 14px">
+      <div class="setting-row"><div class="txt"><strong>Ganti Profil</strong><span>Ubah foto profil dari galeri perangkatmu.</span></div>
+        <button class="btn ghost sm" id="st-profil">Ganti</button></div>
+    </div>
+
+    <div class="section-head"><h3>Keamanan</h3></div>
+    <div class="card" style="padding:4px 14px">
+      <div class="setting-row"><div class="txt"><strong>Sandi</strong><span>Ganti password akun Naell Shop kamu.</span></div>
+        <button class="btn ghost sm" id="st-sandi">Ubah</button></div>
+      <div class="setting-row"><div class="txt"><strong>PassCode / PassKey</strong><span>PassCode: PIN 6 angka · PassKey: ${esc(pk)}</span></div>
+        <button class="btn ghost sm" id="st-passkey">Atur</button></div>
+      <div class="setting-row"><div class="txt"><strong>Verifikasi 2 Langkah</strong><span>Metode saat ini: ${esc(tfa)}</span></div>
+        <button class="btn ghost sm" id="st-2fa">Atur</button></div>
+      <div class="tiny muted" style="padding:10px 0">Semua pengaturan keamanan ini berlaku saat kamu login ulang.</div>
+    </div>
+
+    <div class="section-head"><h3>Akun</h3></div>
+    <div class="card" style="padding:4px 14px">
+      <div class="setting-row">
+        <div class="txt"><strong>Akun Bisa Di Loginkan dengan orang lain?</strong>
+          <span>${ME.multiLogin ? 'ON — akun bisa login di perangkat lain.' : 'OFF — akun terkunci di perangkat ini.'}</span></div>
+        <button class="switch ${ME.multiLogin ? 'on' : ''}" id="st-multi" aria-label="multi login"></button>
+      </div>
+      <div class="setting-row"><div class="txt"><strong>Logout</strong><span>Keluar dari akun Naell Shop.</span></div>
+        <button class="btn danger sm" id="st-logout">Logout</button></div>
+    </div>
+
+    ${ME.isAdmin ? `<div class="section-head"><h3>Panel Admin</h3></div>
+      <div class="card" style="padding:4px 14px">
+        <div class="setting-row"><div class="txt"><strong>Upload Produk</strong><span>Tambahkan foto, keterangan, dan harga produk.</span></div>
+          <button class="btn sm" id="st-upload">Upload</button></div>
+        <div class="setting-row"><div class="txt"><strong>Gmail Khusus Admin</strong><span class="mono">naeldevshop@gmail.com.nael</span></div>
+          <span class="pill blue">Aktif</span></div>
+      </div>
+      <div class="section-head"><h3>Aktivitas Pengguna</h3></div>
+      <div class="list">${DB.aktivitas.length ? DB.aktivitas.slice(0, 12).map(a => `
+        <div class="item"><div class="tiny">${esc(a.teks)}</div><div class="tiny muted">${waktu(a.time)}</div></div>`).join('')
+        : '<div class="empty">Belum ada aktivitas.</div>'}</div>` : ''}
+
+    ${DEV ? `<div class="section-head"><h3>Panel Developer</h3><span class="pill blue sp">Khusus Dev/Naell</span></div>
+      <div class="card" style="padding:4px 14px">
+        <div class="setting-row"><div class="txt"><strong>Buat Akun Admin</strong><span>Buat akun admin baru yang dapat mengelola Naell Shop.</span></div>
+          <button class="btn sm" id="dev-buat">Buat</button></div>
+        <div class="setting-row"><div class="txt"><strong>Akun Admin</strong><span>${daftarAdmin.length} akun admin terdaftar.</span></div>
+          <span class="pill blue">${daftarAdmin.length}</span></div>
+      </div>
+      <div class="list">${daftarAdmin.length ? daftarAdmin.map(a => `
+        <div class="item"><strong style="font-size:14px">${esc(a.nama)}</strong>
+          <span class="pill ${a.role === 'Dev/Naell' ? 'blue' : ''}">${esc(a.role || 'Admin')}</span>
+          <div class="tiny muted">@${esc(a.username)}${a.gmail ? ' · ' + esc(a.gmail) : ''}</div></div>`).join('')
+        : '<div class="empty">Belum ada akun admin.</div>'}</div>` : ''}`;
+
+  /* ganti profil */
+  $('#st-profil').onclick = async () => {
+    const ya = await tanyaYa('Ganti Profil Anda?', 'Foto profil baru akan dipilih dari galeri perangkatmu.', {ya:'Ya', tidak:'Tidak'});
+    if (!ya) return;
+    const d = await pilihFile();
+    if (!d) return;
+    ME.avatar = d; simpan();
+    if (ME.gmail) kirimMail(ME.gmail, {judul:'Profil Email Diganti',
+      isi:`Foto profil akun (@${ME.username}) baru saja diganti pada ${waktu(Date.now())}. Jika bukan kamu, segera hubungi admin.`});
+    aktivitas(`${ME.nama} mengganti foto profil.`);
+    notif({judul:'Profil Diganti', isi:'Foto profil Naell Shop kamu berhasil diperbarui.'});
+    toast('Profil diperbarui', 'ok'); renderApp();
+  };
+
+  /* sandi */
+  $('#st-sandi').onclick = async () => {
+    const lama = await tanyaIsi('Ganti Sandi', 'Masukkan password saat ini.', {label:'Password Lama', type:'password'});
+    if (lama === null) return;
+    if (lama !== dec(ME.pass)) return toast('Password lama salah', 'err');
+    const baru = await tanyaIsi('Ganti Sandi', 'Masukkan password baru (minimal 5 karakter).', {label:'Password Baru', type:'password'});
+    if (baru === null) return;
+    if (baru.length < 5) return toast('Password minimal 5 karakter', 'err');
+    ME.pass = enc(baru); simpan();
+    if (ME.gmail) kirimMail(ME.gmail, {judul:'Sandi Berhasil Diganti', isi:`Password akun (@${ME.username}) berhasil diubah pada ${waktu(Date.now())}.`});
+    aktivitas(`${ME.nama} mengganti sandi akun.`);
+    toast('Sandi berhasil diganti', 'ok'); renderApp();
+  };
+
+  /* passcode / passkey */
+  $('#st-passkey').onclick = () => aturPasskey();
+  /* 2 langkah */
+  $('#st-2fa').onclick = () => atur2FA();
+  /* multi login */
+  $('#st-multi').onclick = async () => {
+    const aktif = !ME.multiLogin;
+    const ya = await tanyaYa('Akun Bisa Di Loginkan dengan orang lain?',
+      aktif ? 'Jika diaktifkan (ON), akun bisa login di perangkat lain.' : 'Jika dimatikan (OFF), akun tidak bisa login di perangkat lain.',
+      {ya: aktif ? 'ON' : 'OFF', tidak:'Batal'});
+    if (!ya) return;
+    ME.multiLogin = aktif; simpan();
+    if (ME.gmail) kirimMail(ME.gmail, {judul:'Pengaturan Akun Diubah',
+      isi:`Izin multi-login akun (@${ME.username}) sekarang ${aktif ? 'ON (bisa login di perangkat lain)' : 'OFF (terkunci di perangkat ini)'}.`});
+    aktivitas(`${ME.nama} mengubah izin multi-login menjadi ${aktif ? 'ON' : 'OFF'}.`);
+    toast('Pengaturan akun disimpan', 'ok'); renderApp();
+  };
+  $('#st-logout').onclick = async () => {
+    const ya = await tanyaYa('Logout?', 'Kamu akan keluar dari akun Naell Shop.', {ya:'Logout', gayaYa:'danger sm'});
+    if (ya) { toast('Berhasil logout', 'ok'); keluar(); }
+  };
+  if (ME.isAdmin) $('#st-upload').onclick = () => formProduk(null);
+  if (DEV) $('#dev-buat').onclick = () => formAdmin();
+}
+
+/* ---------------- PANEL DEVELOPER (khusus role Dev/Naell) ---------------- */
+function formAdmin() {
+  bukaModal(`
+    <div class="sheet-head"><h3>Buat Akun Admin</h3>
+      <p>Akun ini akan mendapat akses admin penuh di Naell Shop. Hanya Dev/Naell yang bisa membuatnya.</p></div>
+    <div class="sheet-body">
+      <div class="field"><label>Nama Lengkap</label>
+        <input class="input" id="da-nama" placeholder="contoh: Budi Santoso"></div>
+      <div class="field"><label>Username</label>
+        <input class="input" id="da-user" placeholder="minimal 3 karakter"></div>
+      <div class="field"><label>Password</label>
+        <input class="input" id="da-pass" type="password" placeholder="minimal 5 karakter"></div>
+      <div class="field"><label>Email Khusus Admin (opsional)</label>
+        <input class="input" id="da-mail" placeholder="contoh: budiadmin">
+        <div class="hint">Kosongkan untuk dibuat otomatis menjadi username@gmail.com.nael sebagai inbox pribadi admin.</div></div>
+      <div id="da-err" class="err"></div>
+    </div>
+    <div class="sheet-foot"><button class="btn" id="da-save">Buat Admin</button>
+      <button class="btn ghost" id="da-no">Batal</button></div>`);
+  $('#da-no').onclick = tutupModal;
+  $('#da-save').onclick = () => {
+    sembunyiErr('#da-err');
+    const nama = $('#da-nama').value.trim(), u = $('#da-user').value.trim(),
+          p = $('#da-pass').value, m = $('#da-mail').value.trim();
+    if (!nama || !u || !p) return tampilErr('#da-err', 'Nama, Username, dan Password wajib diisi.');
+    if (u.length < 3) return tampilErr('#da-err', 'Username minimal 3 karakter.');
+    if (p.length < 5) return tampilErr('#da-err', 'Password minimal 5 karakter.');
+    if (cariUser(u)) return tampilErr('#da-err', 'Username sudah dipakai. Coba yang lain.');
+    let gmail = normalMail(m);
+    if (!gmail) {
+      const dasar = u.toLowerCase().replace(/[^a-z0-9._-]/g, '') || 'admin';
+      gmail = dasar + '@gmail.com.nael';
+      let n = 1;
+      while (cariGmail(gmail)) { gmail = dasar + n + '@gmail.com.nael'; n++; }
+    } else if (cariGmail(gmail)) {
+      return tampilErr('#da-err', 'Email sudah dipakai akun lain.');
+    }
+    DB.users.push({
+      username: u, nama, pass: enc(p), gmail, isAdmin:true, role:'Admin', avatar:'', multiLogin:true,
+      joinedMarket:true, joinedAt: Date.now(),
+      security:{passcode:'', passkey:null, twofa:{on:false, method:'', secret:''}}
+    });
+    kirimMail(gmail, {judul:'Inbox Admin Kamu Aktif — Naell Shop',
+      isi:`Hai ${nama}, akunmu (@${u}) kini punya akses admin di Naell Shop. Email khusus adminmu: ${gmail}. Notifikasi admin akan masuk ke sini.`});
+    aktivitas(`${ME.nama} membuat akun admin baru: ${nama} (@${u}) dengan email khusus ${gmail}.`);
+    simpan();
+    notif({judul:'Akun Admin Dibuat', isi:`${nama} (@${u}) · email: ${gmail}`});
+    toast('Akun admin dibuat: ' + gmail, 'ok'); tutupModal(); renderApp();
+  };
+}
+
+async function aturPasskey() {
+  const sec = ME.security;
+  const pilihan = await new Promise(res => {
+    bukaModal(`
+      <div class="sheet-head"><h3>PassCode / PassKey</h3><p>Pilih jenis keamanan yang ingin kamu pakai.</p></div>
+      <div class="sheet-body">
+        <div class="list">
+          <button class="item" data-p="passcode" style="text-align:left">
+            <strong>PassCode</strong><div class="tiny muted">PIN / kode acak 6 angka, contoh 123456.</div></button>
+          ${Object.entries(TIPE_PASSKEY).map(([k, v]) => `
+            <button class="item" data-p="${k}" style="text-align:left">
+              <strong>PassKey — ${v}</strong><div class="tiny muted">Variasikan sesuai namanya (${v}).</div></button>`).join('')}
+          <button class="item" data-p="hapus" style="text-align:left">
+            <strong style="color:#e11d48">Hapus PassCode / PassKey</strong>
+            <div class="tiny muted">Matikan keamanan PassCode/PassKey.</div></button>
+        </div>
+      </div>
+      <div class="sheet-foot"><button class="btn ghost" id="pk-no">Batal</button></div>`);
+    $('#pk-no').onclick = () => { tutupModal(); res(null); };
+    $$('[data-p]').forEach(b => b.onclick = () => { tutupModal(); res(b.dataset.p); });
+  });
+  if (!pilihan) return;
+
+  if (pilihan === 'hapus') {
+    const ya = await tanyaYa('Hapus Keamanan?', 'PassCode dan PassKey akan dihapus dari akunmu.', {ya:'Hapus', gayaYa:'danger sm'});
+    if (!ya) return;
+    sec.passcode = ''; sec.passkey = null; simpan();
+    notif({judul:'Keamanan Dinonaktifkan', isi:'PassCode / PassKey akunmu sudah dihapus.'});
+    toast('PassCode/PassKey dihapus', 'ok'); renderApp(); return;
+  }
+
+  /* verifikasi dulu: minta kode dari Gmail */
+  if (!ME.gmail) { toast('Buat Gmail dulu untuk verifikasi kode.', 'err'); return; }
+  const ya = await tanyaYa('Verifikasi Bahwa Ini Anda', 'Kode verifikasi akan dikirim ke Gmail Naell Shop kamu.', {ya:'Kirim Kode', tidak:'Batal'});
+  if (!ya) return;
+  const hasil = await mintaKode(ME.gmail, 'verifikasi PassCode/PassKey');
+  if (hasil === 'ulang') { toast('Kode dikirim ulang, tekan Atur lagi.', 'ok'); return; }
+  if (hasil !== true) return;
+
+  if (pilihan === 'passcode') {
+    const kode = await tanyaIsi('Buat PassCode', 'Buat PIN / kode acak 6 angka.', {label:'PassCode (6 angka)', ph:'contoh: 123456'});
+    if (kode === null) return;
+    const bersih = String(kode).replace(/\D/g, '');
+    if (bersih.length !== 6) return toast('PassCode harus 6 angka', 'err');
+    const ulang = await tanyaIsi('Ulangi PassCode', 'Masukkan kembali PassCode untuk memastikan benar.', {label:'Ulangi PassCode', ph:'6 angka'});
+    if (String(ulang).replace(/\D/g, '') !== bersih) return toast('PassCode tidak sama. Coba lagi.', 'err');
+    sec.passcode = bersih; simpan();
+    if (ME.gmail) kirimMail(ME.gmail, {judul:'PassCode Dibuat', isi:`PassCode akun (@${ME.username}) berhasil dibuat dan akan diminta setiap login.`});
+    notif({judul:'PassCode Aktif', isi:'PassCode 6 angka akan diminta setiap kamu login.'});
+    toast('PassCode aktif', 'ok'); renderApp(); return;
+  }
+
+  /* passkey sesuai pilihan */
+  const tipe = pilihan;
+  if (tipe === 'pattern') {
+    const p1 = await gambarPola('Buat Pola Baru', 'Gambar pola keamananmu (minimal 4 titik).');
+    if (!p1) return;
+    const p2 = await gambarPola('Ulangi Pola Kamu', 'Gambar pola sekali lagi agar benar-benar tidak lupa atau salah.');
+    if (!p2) return;
+    if (p1 !== p2) { toast('Pola tidak sama. Ulangi pengaturan.', 'err'); return; }
+    sec.passkey = {tipe:'pattern', pola:p1};
+  } else {
+    const ok = await jalankanPasskey(tipe);
+    if (!ok) return;
+    sec.passkey = {tipe, pola:''};
+  }
+  simpan();
+  if (ME.gmail) kirimMail(ME.gmail, {judul:'PassKey Aktif', isi:`PassKey (${TIPE_PASSKEY[tipe]}) akun (@${ME.username}) berhasil diaktifkan.`});
+  notif({judul:'PassKey Aktif', isi:`PassKey dengan ${TIPE_PASSKEY[tipe]} akan diminta setiap login.`});
+  toast('PassKey aktif', 'ok'); renderApp();
+}
+
+async function atur2FA() {
+  const sec = ME.security;
+  const pilihan = await new Promise(res => {
+    bukaModal(`
+      <div class="sheet-head"><h3>Verifikasi 2 Langkah</h3><p>Pilih metode verifikasi tambahan saat login.</p></div>
+      <div class="sheet-body"><div class="list">
+        <button class="item" data-m="mail" style="text-align:left"><strong>Kode dari Mail</strong>
+          <div class="tiny muted">Kode dikirim ke Gmail Naell Shop kamu.</div></button>
+        <button class="item" data-m="authent" style="text-align:left"><strong>Authenticator</strong>
+          <div class="tiny muted">Pakai kode 6 angka yang berubah setiap 30 detik.</div></button>
+        <button class="item" data-m="off" style="text-align:left"><strong style="color:#e11d48">Matikan Verifikasi 2 Langkah</strong>
+          <div class="tiny muted">Hapus verifikasi tambahan.</div></button>
+      </div></div>
+      <div class="sheet-foot"><button class="btn ghost" id="tf-no">Batal</button></div>`);
+    $('#tf-no').onclick = () => { tutupModal(); res(null); };
+    $$('[data-m]').forEach(b => b.onclick = () => { tutupModal(); res(b.dataset.m); });
+  });
+  if (!pilihan) return;
+
+  if (pilihan === 'off') {
+    const ya = await tanyaYa('Matikan Verifikasi 2 Langkah?', 'Akunmu tidak lagi memakai verifikasi tambahan saat login.', {ya:'Matikan', gayaYa:'danger sm'});
+    if (!ya) return;
+    sec.twofa = {on:false, method:'', secret:''}; simpan();
+    toast('Verifikasi 2 langkah dimatikan', 'ok'); renderApp(); return;
+  }
+  if (!ME.gmail) { toast('Buat Gmail dulu untuk verifikasi.', 'err'); return; }
+
+  if (pilihan === 'mail') {
+    const ya = await tanyaYa('Kode Dari Mail', 'Kode verifikasi akan dikirim ke Gmail Naell Shop kamu setiap login.', {ya:'Kirim Kode', tidak:'Batal'});
+    if (!ya) return;
+    const hasil = await mintaKode(ME.gmail, 'aktivasi verifikasi 2 langkah');
+    if (hasil !== true) return;
+    sec.twofa = {on:true, method:'mail', secret:''}; simpan();
+    if (ME.gmail) kirimMail(ME.gmail, {judul:'Verifikasi 2 Langkah Aktif', isi:'Metode: Kode dari Mail. Kode akan dikirim setiap kali login.'});
+    notif({judul:'2 Langkah Aktif', isi:'Metode: Kode dari Mail.'});
+    toast('Verifikasi 2 langkah aktif (Mail)', 'ok'); renderApp(); return;
+  }
+
+  /* authenticator */
+  const secret = buatAuthKey();
+  const dikonfirm = await new Promise(res => {
+    bukaModal(`
+      <div class="sheet-head"><h3>Kode Penaut Authenticator</h3>
+        <p>Salin kode ini, lalu buka <b>Gmail → Autentikator → tanda +</b>, masukkan Nama dan kode penaut.
+          Setelah itu kode 6 angka akan berubah setiap 30 detik.</p></div>
+      <div class="sheet-body">
+        <div class="item" style="text-align:center">
+          <div class="tiny muted">Kode penaut</div>
+          <div class="authen-code" style="font-size:20px;letter-spacing:2px" id="tfa-key">${esc(secret)}</div>
+          <button class="btn ghost sm" id="tfa-salin" style="margin-top:9px">Salin Kode</button>
+        </div>
+        <div class="field" style="margin-top:14px"><label>Verifikasi kode dari Gmail</label>
+          <button class="btn ghost block" id="tfa-kirim">Kirim Kode Verifikasi ke Gmail</button>
+          <div id="tfa-box" class="hidden" style="margin-top:10px">
+            <input id="tfa-kode" class="code-input" maxlength="6" inputmode="numeric" placeholder="------">
+            <div class="tiny muted" style="margin-top:6px">Masukkan 6 angka dari Gmail Naell Shop kamu.</div>
+          </div>
+          <div id="tfa-kerr" class="err" style="margin-top:10px"></div>
+        </div>
+      </div>
+      <div class="sheet-foot"><button class="btn" id="tfa-lanjut">Lanjut</button>
+        <button class="btn ghost" id="tfa-batal">Batal</button></div>`, {kunci:true});
+    let kode = null;
+    $('#tfa-salin').onclick = () => { navigator.clipboard && navigator.clipboard.writeText(secret); toast('Kode penaut disalin', 'ok'); };
+    $('#tfa-batal').onclick = () => res(null);
+    $('#tfa-kirim').onclick = () => { kode = kirimKode(ME.gmail, 'aktivasi authenticator'); $('#tfa-box').classList.remove('hidden'); toast('Kode dikirim ke Gmail', 'ok'); };
+    $('#tfa-lanjut').onclick = () => {
+      const err = $('#tfa-kerr');
+      if (!kode) { err.textContent = 'Kirim kode verifikasi ke Gmail terlebih dahulu.'; err.classList.add('show'); return; }
+      if ($('#tfa-kode').value.trim() !== kode) { err.textContent = 'Kode verifikasi salah.'; err.classList.add('show'); return; }
+      tutupModal(); res(true);
+    };
+  });
+  if (!dikonfirm) return;
+  sec.twofa = {on:true, method:'authent', secret}; simpan();
+  if (ME.gmail) kirimMail(ME.gmail, {judul:'Verifikasi 2 Langkah Aktif', isi:`Metode: Authenticator. Kode penaut: ${secret}.`});
+  notif({judul:'2 Langkah Aktif', isi:'Metode: Authenticator (kode berubah tiap 30 detik).'});
+  toast('Verifikasi 2 langkah aktif (Authenticator)', 'ok'); renderApp();
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+async function init() {
+  muat();
+  await ambilServer();
+
+  if (!DB.mails['naeldevshop@gmail.com.nael'] || !DB.mails['naeldevshop@gmail.com.nael'].length) {
+    kirimMail('naeldevshop@gmail.com.nael', {judul:'Naell Shop Admin Aktif',
+      isi:'Gmail admin naeldevshop@gmail.com.nael aktif. Semua aktivitas pengguna akan dilaporkan ke sini.'});
+  }
+  /* layar login */
+  $('#btn-login').onclick = masuk;
+  ['#lg-user','#lg-pass','#lg-mail'].forEach(s => $(s).onkeydown = e => { if (e.key === 'Enter') masuk(); });
+  $('#go-register').onclick = () => { sembunyiErr('#rg-err'); layar('screen-register'); };
+  $('#go-login').onclick = () => layar('screen-login');
+  $('#go-recover').onclick = () => { pulihkanReset(); layar('screen-recover'); };
+  /* daftar */
+  $('#btn-register').onclick = daftar;
+  /* pemulihan */
+  $('#rc-next').onclick = pulihkanLanjut;
+  $('#rc-verify').onclick = pulihkanVerifikasi;
+  $('#rc-save').onclick = pulihkanSimpan;
+  $('#rc-resend').onclick = () => { if (rcUser) kirimKode(rcUser.gmail, 'pemulihan akun'); };
+  $('#rc-cancel').onclick = () => { pulihkanReset(); layar('screen-login'); };
+  $('#rc-back').onclick = () => { pulihkanReset(); layar('screen-login'); };
+  /* selamat datang */
+  $('#wc-start').onclick = mulaiLoading;
+  $('#wc-out').onclick = keluar;
+
+  /* bila server realtime tersedia: unggah data awal bila kosong, lalu sambung aliran */
+  if (SINKRON.jalan && !SINKRON.adaData) kirimServer();
+  pasangRealtime();
+  mulaiDetak();
+
+  if (DB.session) {
+    const u = cariUser(DB.session);
+    if (u) { ME = u; perbaruiOnline(); masukLayarWelcome(); return; }
+    DB.session = null; simpan();
+  }
+  perbaruiOnline();
+  layar('screen-login');
+}
+init();
+</script>
+</body>
+</html>

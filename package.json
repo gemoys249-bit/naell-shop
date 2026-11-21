@@ -1,0 +1,13 @@
+{
+  "name": "naell-shop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Naell Shop - aplikasi realtime (server + HTML)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
